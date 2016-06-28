@@ -1,7 +1,13 @@
 var body = document.body;
 var grid = document.getElementsByClassName('grid')[0];
+var itinerary = document.getElementById('itinerary');
+var places = [];
 
 initCountries();
+
+body.addEventListener('mouseover', function(e)  {
+  overlay(e);
+});
 
 function initCountries()  {
   var xhr = new XMLHttpRequest();
@@ -20,7 +26,7 @@ function isoItems(country) {
     var flag = item.img.toLowerCase();
     var container = htmlBlock('div', [['class', 'grid-item']], '', grid);
     var gridItem = htmlBlock('div', [['class', 'grid-item-content']], '', container);
-    htmlBlock('img', [['src', 'images/' + flag + '.png']], '', gridItem);
+    htmlBlock('img', [['class', 'flag-image'],['src', 'images/' + flag + '.png']], '', gridItem);
     htmlBlock('div', [['class', 'country']], item.name, gridItem);
     container.appendChild(gridItem);
     iso.appended(gridItem);
@@ -28,7 +34,43 @@ function isoItems(country) {
   });
 }
 
+var Trip = function(destination)  {
+  this.destination = destination;
+  this.startDate = function(year, month, day) {
+     var date = new Date();
+     date.setFullYear(year);
+     date.setMonth(month);
+     date.setDate(day);
+     return date.toLocaleString('en-Us');
+  }
+  this.endDate = function(year, month, day) {
+     var date = new Date();
+     date.setFullYear(year);
+     date.setMonth(month);
+     date.setDate(day);
+     return date.toLocaleString('en-Us');
+  }
+}
 
+var africa = new Trip();
+
+function overlay(e) {
+  var theParent = e.target.offsetParent;
+  var element = e.target.nodeName;
+  var height = e.target.clientHeight;
+  var width = e.target.clientWidth;
+  if(theParent.className == 'grid-item-content' && element == 'IMG') {
+    var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
+    var overLayTextStyles = [['class', 'overlay'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%']];
+    var overlay = htmlBlock('div', overLayStyles, '', theParent);
+    var overlayText = htmlBlock('h4', overLayTextStyles, 'Add to Itinerary', theParent);
+  }
+  theParent.addEventListener('mouseleave', function(e) {
+    if(theParent.lastChild.className =='overlay') {
+      theParent.removeChild(theParent.lastChild);
+    }
+  }, false);
+}
 // Misc functions
 function createEl(tag, parent)  {
   var newElement = document.createElement(tag);
