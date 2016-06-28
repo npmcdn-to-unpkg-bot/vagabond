@@ -1,7 +1,9 @@
 var body = document.body;
 var grid = document.getElementsByClassName('grid')[0];
 
-window.addEventListener('load', function(e) {
+initCountries();
+
+function initCountries()  {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/countries');
   xhr.send();
@@ -10,7 +12,7 @@ window.addEventListener('load', function(e) {
     var countries = JSON.parse(xhr.responseText);
     isoItems(countries);
   });
-});
+}
 
 function isoItems(country) {
   var iso = new Isotope('.grid');
@@ -25,6 +27,8 @@ function isoItems(country) {
     iso.layout();
   });
 }
+
+
 // Misc functions
 function createEl(tag, parent)  {
   var newElement = document.createElement(tag);
