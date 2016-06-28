@@ -5,9 +5,45 @@ var places = [];
 
 initCountries();
 
+window.addEventListener('load', function(e) {
+  if(document.cookie) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/check/' + document.cookie);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send();
+    xhr.addEventListener('load', function(e) {
+      var user = xhr.responseText;
+      if(user.length > 0) {
+        var message = 'Welcome, ' + user;
+      } else {
+        message = 'Login';
+      }
+      login(message);
+    });
+  } else {
+    return;
+  }
+});
+
 body.addEventListener('mouseover', function(e)  {
   overlay(e);
 });
+
+body.addEventListener('click', function(e)  {
+  var country = e.target.offsetParent.dataset.country;
+  console.log(country);
+});
+
+
+function login(value) {
+  var anchor = document.getElementsByClassName('sidebar')[0];
+  if(value.length > 0)  {
+    var className = 'user';
+  } else {
+    className = 'login';
+  }
+  htmlBlock('span', [], value, htmlBlock('div', [['class', className]], '', anchor));
+}
 
 function initCountries()  {
   var xhr = new XMLHttpRequest();
@@ -24,8 +60,9 @@ function isoItems(country) {
   var iso = new Isotope('.grid');
   country.forEach(function(item) {
     var flag = item.img.toLowerCase();
+    var name  = item.name.toLowerCase();
     var container = htmlBlock('div', [['class', 'grid-item']], '', grid);
-    var gridItem = htmlBlock('div', [['class', 'grid-item-content']], '', container);
+    var gridItem = htmlBlock('div', [['class', 'grid-item-content'], ['data-country', name]], '', container);
     htmlBlock('img', [['class', 'flag-image'],['src', 'images/' + flag + '.png']], '', gridItem);
     htmlBlock('div', [['class', 'country']], item.name, gridItem);
     container.appendChild(gridItem);
