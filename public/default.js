@@ -1,9 +1,14 @@
 var body = document.body;
 var grid = document.getElementsByClassName('grid')[0];
 var itinerary = document.getElementById('itinerary');
-var places = [];
+var places = ['angola', 'argentina'];
 
-initCountries();
+// initCountries();
+
+// $('.country-button').on('click', function(e) {
+//   var end = document.getElementsByClassName('end-date-picker')[0];
+//   console.log(end.value);
+// });
 
 window.addEventListener('load', function(e) {
   if(document.cookie) {
@@ -57,7 +62,6 @@ function initCountries()  {
   xhr.open('GET', '/countries');
   xhr.send();
   xhr.addEventListener('load', function(e)  {
-    console.log(xhr.responseURL);
     var countries = JSON.parse(xhr.responseText);
     isoItems(countries);
   });
@@ -94,10 +98,74 @@ var Trip = function(destination)  {
      date.setDate(day);
      return date.toLocaleString('en-Us');
   }
+  this.log = function() {
+    console.log(this.destination);
+  }
 }
 
-var africa = new Trip();
+function initPlaces(array) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/countries');
+  xhr.send();
+  xhr.addEventListener('load', function(e)  {
+    var countries = JSON.parse(xhr.responseText);
+    array.forEach(function(item)  {
+      itineraryRow(item, countries);
+    });
+  });
+}
 
+function itineraryRow(name, countries) {
+  var image = countries.filter(function(item) {
+    var countryName = item.name.toLowerCase();
+    if(countryName == name) {
+      return item;
+    }
+  });
+
+  var flag = image[0].img.toLowerCase();
+  console.log(flag);
+  var country = name;
+  var anchor = document.getElementsByClassName('well itinerary')[0];
+  // htmlBlock('h4',[], 'Add to Itinerary', anchor);
+  var row = htmlBlock('div', [['class', 'row']], '', anchor);
+  var outer = htmlBlock('div', [['class', 'outer']], '', row);
+
+  var columnOne = htmlBlock('div', [['class', 'col-md-3']], '', outer);
+  var tableOne = htmlBlock('table', [['class', 'country-table']], '', columnOne);
+  var rowOne = htmlBlock('tr', [], '', tableOne);
+
+  htmlBlock('img', [['src', 'small/' + flag + '.png']], '', htmlBlock('div', [['class', 'small-flag']], '', htmlBlock('td', [], '', rowOne)));
+  htmlBlock('div', [['class', 'country-name']], country, htmlBlock('td', [], '', rowOne));
+
+  var columnTwo = htmlBlock('div', [['class', 'col-md-4']], '', outer);
+  var tableTwo = htmlBlock('table', [['class', 'country-table']], '', columnTwo);
+  var rowTwo = htmlBlock('tr', [], '', tableTwo);
+
+  htmlBlock('div', [['class', 'start-date']], 'Start Date', htmlBlock('td', [], '', rowTwo));
+  htmlBlock('input', [['class', 'start-date-picker-' + country], ['type', 'date']], '', htmlBlock('td', [], '', rowTwo));
+
+
+  var columnThree = htmlBlock('div', [['class', 'col-md-4']], '', outer);
+  var tableThree = htmlBlock('table', [['class', 'country-table']], '', columnThree);
+  var rowThree = htmlBlock('tr', [], '', tableThree);
+
+  htmlBlock('div', [['class', 'end-date']], 'End Date', htmlBlock('td', [], '', rowThree));
+  htmlBlock('input', [['class', 'end-date-picker-' + country], ['type', 'date']], '', htmlBlock('td', [], '', rowThree));
+
+  var columnFour = htmlBlock('div', [['class', 'col-md-1']], '', outer);
+
+  htmlBlock('button', [['class', 'btn btn-default country-button ' + country], ['type', 'button']], 'Add', columnFour);
+  var startDate = document.getElementsByClassName('start-date-picker-' + country)[0];
+  var endDate = document.getElementsByClassName('end-date-picker-' + country)[0];
+  var button = document.getElementsByClassName('btn btn-default country-button ' + country)[0];
+  button.addEventListener('click', function(e)  {
+    var start = startDate.value;
+    var end = endDate.value;
+    var trip = new Trip(country, start, end);
+    trip.log();
+  });
+}
 function overlay(e) {
   var theParent = e.target.offsetParent;
   var element = e.target.nodeName;
