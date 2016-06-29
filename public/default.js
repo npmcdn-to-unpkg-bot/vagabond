@@ -82,24 +82,29 @@ function isoItems(country) {
   });
 }
 
-var Trip = function(destination)  {
+var Trip = function(destination, begin, end)  {
   this.destination = destination;
-  this.startDate = function(year, month, day) {
+
+  this.start = begin.split('-');
+  this.startDate = function() {
      var date = new Date();
-     date.setFullYear(year);
-     date.setMonth(month);
-     date.setDate(day);
+     date.setFullYear(this.start[0]);
+     date.setMonth(this.start[1]-1);
+     date.setDate(this.start[2]);
      return date.toLocaleString('en-Us');
   }
-  this.endDate = function(year, month, day) {
+  this.finish = end.split('-');
+  this.endDate = function() {
      var date = new Date();
-     date.setFullYear(year);
-     date.setMonth(month);
-     date.setDate(day);
+     date.setFullYear(this.finish[0]);
+     date.setMonth(this.finish[1]-1);
+     date.setDate(this.finish[2]);
      return date.toLocaleString('en-Us');
   }
   this.log = function() {
     console.log(this.destination);
+    console.log(this.startDate());
+    console.log(this.endDate());
   }
 }
 
