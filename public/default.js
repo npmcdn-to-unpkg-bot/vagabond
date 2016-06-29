@@ -21,7 +21,7 @@ window.addEventListener('load', function(e) {
       login(message);
     });
   } else {
-    return;
+    login('Login');
   }
 });
 
@@ -30,17 +30,24 @@ body.addEventListener('mouseover', function(e)  {
 });
 
 body.addEventListener('click', function(e)  {
-  var country = e.target.offsetParent.dataset.country;
-  console.log(country);
+  queue(e);
 });
 
+function queue(e) {
+  var country = e.target.offsetParent.dataset.country;
+  if(places.indexOf(country) == -1){
+    places.push(country);
+  } else {
+    return;
+  }
+}
 
 function login(value) {
   var anchor = document.getElementsByClassName('sidebar')[0];
-  if(value.length > 0)  {
-    var className = 'user';
+  if(value.length < 1 || value == 'Login')  {
+    var className = 'login';
   } else {
-    className = 'login';
+    className = 'user';
   }
   htmlBlock('span', [], value, htmlBlock('div', [['class', className]], '', anchor));
 }
@@ -96,11 +103,19 @@ function overlay(e) {
   var element = e.target.nodeName;
   var height = e.target.clientHeight;
   var width = e.target.clientWidth;
+  var country = e.target.offsetParent.dataset.country;
   if(theParent.className == 'grid-item-content' && element == 'IMG') {
+    if(places.indexOf(country) != -1) {
+      var message = 'You have already added '  + country;
+      var pointer = 'cursor: not-allowed;';
+    } else {
+      message = 'Add to Itinerary';
+      pointer = 'cursor: pointer;';
+    }
     var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
-    var overLayTextStyles = [['class', 'overlay'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%']];
+    var overLayTextStyles = [['class', 'overlay'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%;' + pointer]];
     var overlay = htmlBlock('div', overLayStyles, '', theParent);
-    var overlayText = htmlBlock('h4', overLayTextStyles, 'Add to Itinerary', theParent);
+    var overlayText = htmlBlock('h4', overLayTextStyles, message, theParent);
   }
   theParent.addEventListener('mouseleave', function(e) {
     if(theParent.lastChild.className =='overlay') {
