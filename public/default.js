@@ -18,7 +18,31 @@ body.addEventListener('mouseover', function(e)  {
 body.addEventListener('click', function(e)  {
   queue(e);
   removeButton(e);
+  initItinerary(e);
 });
+
+var Itinerary = function(name, schedule)  {
+  var self = this;
+  this.name = name;
+  this.schedule = schedule;
+  this.setItinerary = function()  {
+    var message = [this.name, this.schedule];
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/itinerary/post');
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(message));
+  }
+}
+
+function initItinerary(e)  {
+  if(e.target.id == 'submit-itinerary') {
+    var itinerary = new Itinerary(currentUser[0], schedule);
+    itinerary.setItinerary();
+  }
+  else {
+    return;
+  }
+}
 
 function checkUser(e) {
   if(document.cookie) {
@@ -167,25 +191,22 @@ var Trip = function(destination, begin, end)  {
   this.trip = {};
 
   this.addTrip = function() {
+    this.trip.id = Date.now();
     this.trip.country = this.destination;
     this.trip.startDate = this.startDate();
     this.trip.endDate = this.endDate();
-    return this.trip;
+
+    schedule.push(this.trip);
+    var package = [this.trip, currentUser[0]];
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', '/schedule/put');
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(package));
+    xhr.addEventListener('load', function(e)  {
+      console.log(xhr.responseText);
+    });
+    return;
   }
-
-  this.tripObject = this.addTrip();
-
-  this.schedule = function()  {
-    var schedule = new CustomEvent('schedule', {'detail': self.tripObject});
-    body.dispatchEvent(schedule);
-  }
-}
-
-var Destination = function()  {
-  var self = this;
-  body.addEventListener('schedule', function(e) {
-    schedule.push(e.detail);
-  });
 }
 
 function initPlaces(array) {
@@ -203,7 +224,11 @@ function initPlaces(array) {
 }
 
 function initWell() {
-  htmlBlock('h2', [], 'Add to Itinerary', htmlBlock('div', [['class', 'well itinerary']], '', itinerary));
+  var well = htmlBlock('div', [['class', 'well itinerary']], '', itinerary);
+  var top = htmlBlock('div', [['class', 'well-top']], '', well);
+  var bottom = htmlBlock('div', [['class', 'well-bottom text-right']], '', well);
+  htmlBlock('h2', [], 'Add to Itinerary', top);
+  htmlBlock('button', [['class', 'btn btn-default btn-lg text-right'], ['id', 'submit-itinerary']], 'Submit', bottom);
 }
 
 function itineraryRow(name, countries) {
@@ -217,7 +242,7 @@ function itineraryRow(name, countries) {
   var flag = image[0].img.toLowerCase();
   console.log(flag);
   var country = name;
-  var anchor = document.getElementsByClassName('well itinerary')[0];
+  var anchor = document.getElementsByClassName('well-top')[0];
   // htmlBlock('h4',[], 'Add to Itinerary', anchor);
   var row = htmlBlock('div', [['class', 'row']], '', anchor);
   var outer = htmlBlock('div', [['class', 'outer']], '', row);
@@ -254,9 +279,8 @@ function itineraryRow(name, countries) {
     var start = startDate.value;
     var end = endDate.value;
     var trip = new Trip(country, start, end);
-    var plan = new Destination();
     trip.log();
-    trip.schedule();
+    trip.addTrip();
   });
 }
 function overlay(e) {
