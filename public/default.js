@@ -1,14 +1,10 @@
 var body = document.body;
-var grid = document.getElementsByClassName('grid')[0];
+var countries = document.getElementById('countries');
 var itinerary = document.getElementById('itinerary');
-var places = ['angola', 'argentina'];
+var places = [];
+var currentUser = [];
 
 // initCountries();
-
-// $('.country-button').on('click', function(e) {
-//   var end = document.getElementsByClassName('end-date-picker')[0];
-//   console.log(end.value);
-// });
 
 window.addEventListener('load', function(e) {
   if(document.cookie) {
@@ -17,16 +13,18 @@ window.addEventListener('load', function(e) {
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
     xhr.addEventListener('load', function(e) {
-      var user = xhr.responseText;
-      if(user.length > 0) {
-        var message = 'Welcome, ' + user;
+      var user = JSON.parse(xhr.responseText);
+      if(user.username.length > 0) {
+        checkIn(user);
+        var message = 'Welcome, ' + user.username;
+
       } else {
         message = 'Login';
       }
-      login(message);
+      displayName(message);
     });
   } else {
-    login('Login');
+    displayName('Login');
   }
 });
 
@@ -36,18 +34,64 @@ body.addEventListener('mouseover', function(e)  {
 
 body.addEventListener('click', function(e)  {
   queue(e);
+  queueRemove(e);
 });
 
-function queue(e) {
-  var country = e.target.offsetParent.dataset.country;
-  if(places.indexOf(country) == -1){
-    places.push(country);
+function checkIn(user)  {
+  if(currentUser.length <  1)  {
+    currentUser.push(user.username);
+    user.queue.forEach(function(item) {
+      places.push(item);
+    });
   } else {
     return;
   }
 }
 
-function login(value) {
+function queueRemove(e) {
+  var theParent = e.target.parentElement;
+  var country = e.target.dataset.button;
+  var index = places.indexOf(country);
+  if(index > -1)  {
+    places.splice(index, 1);
+  }
+  if(theParent.className == 'button-parent')  {
+    clearChildren(theParent);
+    var message = {};
+    message.country = country;
+    message.user = currentUser[0];
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', '/queue/delete');
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(message));
+    xhr.addEventListener('load', function(e)  {
+      var message = xhr.responseText;
+      console.log(message);
+    });
+  }
+}
+
+function queue(e) {
+  var theParent = e.target.offsetParent;
+  var country = e.target.offsetParent.dataset.country;
+  if(places.indexOf(country) == -1 && e.target.nodeName == 'H4'){
+    places.push(country);
+    htmlBlock('button', [['class', 'btn btn-danger btn-xs remove-button'], ['data-button', country]], 'Remove', htmlBlock('div', [['class', 'button-parent']], '', theParent));
+    var message = {};
+    message.country = country;
+    message.user = currentUser[0];
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', '/queue/put');
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(message));
+    xhr.addEventListener('load', function(e)  {
+      var message = xhr.responseText;
+      console.log(message);
+    });
+  }
+}
+
+function displayName(value) {
   var anchor = document.getElementsByClassName('sidebar')[0];
   if(value.length < 1 || value == 'Login')  {
     var className = 'login';
@@ -68,6 +112,7 @@ function initCountries()  {
 }
 
 function isoItems(country) {
+  var grid = htmlBlock('div', [['class', 'grid']], '', countries);
   var iso = new Isotope('.grid');
   country.forEach(function(item) {
     var flag = item.img.toLowerCase();
@@ -109,15 +154,21 @@ var Trip = function(destination, begin, end)  {
 }
 
 function initPlaces(array) {
+  clearChildren(countries);
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/countries');
   xhr.send();
   xhr.addEventListener('load', function(e)  {
+    initWell();
     var countries = JSON.parse(xhr.responseText);
     array.forEach(function(item)  {
       itineraryRow(item, countries);
     });
   });
+}
+
+function initWell() {
+  htmlBlock('h2', [], 'Add to Itinerary', htmlBlock('div', [['class', 'well itinerary']], '', itinerary));
 }
 
 function itineraryRow(name, countries) {
@@ -191,11 +242,11 @@ function overlay(e) {
     var overlayText = htmlBlock('h4', overLayTextStyles, message, theParent);
   }
   theParent.addEventListener('mouseleave', function(e) {
-    if(theParent.lastChild.className =='overlay') {
-      theParent.removeChild(theParent.lastChild);
-    }
+    $('.overlay').remove();
   }, false);
 }
+
+
 // Misc functions
 function createEl(tag, parent)  {
   var newElement = document.createElement(tag);
