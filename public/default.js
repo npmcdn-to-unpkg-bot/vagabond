@@ -5,7 +5,7 @@ var places = [];
 var schedule = [];
 var currentUser = [];
 
-// initCountries();
+initCountries();
 
 window.addEventListener('load', function(e) {
   checkUser(e);
@@ -19,6 +19,8 @@ body.addEventListener('click', function(e)  {
   queue(e);
   removeButton(e);
   initItinerary(e);
+  initPlaces(e, places);
+  returnCountries(e);
 });
 
 var Itinerary = function(name, schedule)  {
@@ -135,6 +137,16 @@ function displayName(value) {
     className = 'user';
   }
   htmlBlock('span', [], value, htmlBlock('div', [['class', className]], '', anchor));
+  htmlBlock('div', [['class', 'view-itinerary']], 'View Itinerary', anchor);
+}
+
+function returnCountries(e) {
+  if(e.target.id == 'return-countries') {
+    clearChildren
+    initCountries(itinerary);
+  } else {
+    return;
+  }
 }
 
 function initCountries()  {
@@ -209,26 +221,29 @@ var Trip = function(destination, begin, end)  {
   }
 }
 
-function initPlaces(array) {
-  clearChildren(countries);
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/countries');
-  xhr.send();
-  xhr.addEventListener('load', function(e)  {
-    initWell();
-    var countries = JSON.parse(xhr.responseText);
-    array.forEach(function(item)  {
-      itineraryRow(item, countries);
+function initPlaces(e, array) {
+  if(e.target.className == 'view-itinerary')  {
+    clearChildren(countries);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/countries');
+    xhr.send();
+    xhr.addEventListener('load', function(e)  {
+      initWell();
+      var countries = JSON.parse(xhr.responseText);
+      array.forEach(function(item)  {
+        itineraryRow(item, countries);
+      });
     });
-  });
+  }
 }
 
 function initWell() {
   var well = htmlBlock('div', [['class', 'well itinerary']], '', itinerary);
   var top = htmlBlock('div', [['class', 'well-top']], '', well);
-  var bottom = htmlBlock('div', [['class', 'well-bottom text-right']], '', well);
+  var row = htmlBlock('div', [['class', 'row']], '', well);
   htmlBlock('h2', [], 'Add to Itinerary', top);
-  htmlBlock('button', [['class', 'btn btn-default btn-lg text-right'], ['id', 'submit-itinerary']], 'Submit', bottom);
+  htmlBlock('button', [['class', 'btn btn-default btn-lg'], ['id', 'return-countries']], 'Return', htmlBlock('div', [['class', 'col-md-1']], '', row));
+  htmlBlock('button', [['class', 'btn btn-default btn-lg'], ['id', 'submit-itinerary']], 'Submit', htmlBlock('div', [['class', 'col-md-offset-9 col-md-1']], '', row));
 }
 
 function itineraryRow(name, countries) {
