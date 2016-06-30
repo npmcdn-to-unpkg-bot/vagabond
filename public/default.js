@@ -2,11 +2,25 @@ var body = document.body;
 var countries = document.getElementById('countries');
 var itinerary = document.getElementById('itinerary');
 var places = [];
+var schedule = [];
 var currentUser = [];
 
 // initCountries();
 
 window.addEventListener('load', function(e) {
+  checkUser(e);
+});
+
+body.addEventListener('mouseover', function(e)  {
+  overlay(e);
+});
+
+body.addEventListener('click', function(e)  {
+  queue(e);
+  removeButton(e);
+});
+
+function checkUser(e) {
   if(document.cookie) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/check/' + document.cookie);
@@ -17,7 +31,6 @@ window.addEventListener('load', function(e) {
       if(user.username.length > 0) {
         checkIn(user);
         var message = 'Welcome, ' + user.username;
-
       } else {
         message = 'Login';
       }
@@ -26,16 +39,7 @@ window.addEventListener('load', function(e) {
   } else {
     displayName('Login');
   }
-});
-
-body.addEventListener('mouseover', function(e)  {
-  overlay(e);
-});
-
-body.addEventListener('click', function(e)  {
-  queue(e);
-  queueRemove(e);
-});
+}
 
 function checkIn(user)  {
   if(currentUser.length <  1)  {
@@ -48,47 +52,55 @@ function checkIn(user)  {
   }
 }
 
-function queueRemove(e) {
+function removeButton(e) {
   var theParent = e.target.parentElement;
   var country = e.target.dataset.button;
+  if(theParent.className == 'button-parent')  {
+    clearChildren(theParent);
+    removeQueue(country);
+  }
+}
+
+function removeQueue(country)  {
   var index = places.indexOf(country);
   if(index > -1)  {
     places.splice(index, 1);
   }
-  if(theParent.className == 'button-parent')  {
-    clearChildren(theParent);
-    var message = {};
-    message.country = country;
-    message.user = currentUser[0];
-    var xhr = new XMLHttpRequest();
-    xhr.open('DELETE', '/queue/delete');
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(JSON.stringify(message));
-    xhr.addEventListener('load', function(e)  {
-      var message = xhr.responseText;
-      console.log(message);
-    });
-  }
+  var message = {};
+  message.country = country;
+  message.user = currentUser[0];
+  var xhr = new XMLHttpRequest();
+  xhr.open('DELETE', '/queue/delete');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(JSON.stringify(message));
+  xhr.addEventListener('load', function(e)  {
+    var message = xhr.responseText;
+    console.log(message);
+  });
 }
 
 function queue(e) {
   var theParent = e.target.offsetParent;
   var country = e.target.offsetParent.dataset.country;
   if(places.indexOf(country) == -1 && e.target.nodeName == 'H4'){
-    places.push(country);
     htmlBlock('button', [['class', 'btn btn-danger btn-xs remove-button'], ['data-button', country]], 'Remove', htmlBlock('div', [['class', 'button-parent']], '', theParent));
-    var message = {};
-    message.country = country;
-    message.user = currentUser[0];
-    var xhr = new XMLHttpRequest();
-    xhr.open('PUT', '/queue/put');
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(JSON.stringify(message));
-    xhr.addEventListener('load', function(e)  {
-      var message = xhr.responseText;
-      console.log(message);
-    });
+    queueAdd(country);
   }
+}
+
+function queueAdd(country)  {
+  places.push(country);
+  var message = {};
+  message.country = country;
+  message.user = currentUser[0];
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', '/queue/put');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(JSON.stringify(message));
+  xhr.addEventListener('load', function(e)  {
+    var message = xhr.responseText;
+    console.log(message);
+  });
 }
 
 function displayName(value) {
@@ -128,6 +140,7 @@ function isoItems(country) {
 }
 
 var Trip = function(destination, begin, end)  {
+  var self = this;
   this.destination = destination;
 
   this.start = begin.split('-');
@@ -151,6 +164,28 @@ var Trip = function(destination, begin, end)  {
     console.log(this.startDate());
     console.log(this.endDate());
   }
+  this.trip = {};
+
+  this.addTrip = function() {
+    this.trip.country = this.destination;
+    this.trip.startDate = this.startDate();
+    this.trip.endDate = this.endDate();
+    return this.trip;
+  }
+
+  this.tripObject = this.addTrip();
+
+  this.schedule = function()  {
+    var schedule = new CustomEvent('schedule', {'detail': self.tripObject});
+    body.dispatchEvent(schedule);
+  }
+}
+
+var Destination = function()  {
+  var self = this;
+  body.addEventListener('schedule', function(e) {
+    schedule.push(e.detail);
+  });
 }
 
 function initPlaces(array) {
@@ -219,7 +254,9 @@ function itineraryRow(name, countries) {
     var start = startDate.value;
     var end = endDate.value;
     var trip = new Trip(country, start, end);
+    var plan = new Destination();
     trip.log();
+    trip.schedule();
   });
 }
 function overlay(e) {
