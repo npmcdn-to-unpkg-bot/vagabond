@@ -4,7 +4,9 @@
   margin: 20px;
 }
 
-.overlay { cursor: pointer; }
+.overlay {
+  text-transform: capitalize;
+}
 
 .country  {
   position:absolute;
@@ -20,7 +22,8 @@
 }
 
 .login,
-.user  {
+.user,
+.view-itinerary  {
   margin-left: 20px;
   padding: 10px;
   color: white;
@@ -29,4 +32,36 @@
   font-size: 14px;
 }
 
-.login span:hover  { cursor: pointer; }
+.login span:hover,
+.view-itinerary:hover  { cursor: pointer; }
+
+.well.itinerary {
+  margin-top: 20px;
+}
+
+.well.itinerary h2  { margin-bottom: 20px; }
+
+.outer {
+  display: inline-block;;
+  margin-bottom: 10px;
+}
+
+.country-name {
+  padding-left: 5px;
+  text-transform: capitalize;
+}
+
+.country-table  { height: 50px; }
+
+.country-button { margin-top: 8px; }
+
+.start-date,
+.end-date  { width:75px; }
+
+.country-name {}
+
+.remove-button  {
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+}
