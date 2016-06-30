@@ -9,11 +9,14 @@ check.use(cookieParser);
 
 check.get('/:id', function(req, res) {
   // console.log(req.params.id);
-  console.log(req.cookies.name);
+  // console.log(req.cookies.name);
   var value = checkCookie(req.cookies.name);
-    console.log('hello ' + value.username);
+  var message = {};
+  message.username = value.username;
+  message.queue = value.queue;
+    // console.log('hello ' + value.username);
   if(value)  {
-    res.send(value.username);
+    res.send(message);
   } else {
     res.send({})
   }
