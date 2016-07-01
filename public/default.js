@@ -183,25 +183,29 @@ function isoItems(country) {
     itemSelector: '.grid-item-content'
   });
   var filterFunctions = {};
-  function concatValues(obj) {
-    var value = '';
-    for (var prop in obj) {
-      value += obj[prop];
-  }
-  return value;
-}
   body.addEventListener('click', function(e) {
-    if(e.className == 'button-group filters-button-group')  {
-      if (!matchesSelector(e.target, 'div')) {
-        return;
+    if(e.target.classList.contains('button')) {
+      function concatValues(obj) {
+        var value = '';
+        for (var prop in obj) {
+          value += obj[prop];
       }
+      return value;
     }
-    var buttonGroup = e.target.parentElement;
-    var filterGroup = buttonGroup.getAttribute('data-filter-group');
-    filterFunctions[filterGroup] = e.target.getAttribute('data-filter');
+      if(e.className == 'button-group filters-button-group')  {
+        if (!matchesSelector(e.target, 'div')) {
+          return;
+        }
+      }
+      var buttonGroup = e.target.parentElement;
+      var filterGroup = buttonGroup.getAttribute('data-filter-group');
+      filterFunctions[filterGroup] = e.target.getAttribute('data-filter');
+      // e.target.getAttribute('data-filter')
+      console.log()
+      var filterValue = concatValues(filterFunctions);
+      iso.arrange({ filter: filterValue });
+    }
 
-    var filterValue = concatValues(filterFunctions);
-    iso.arrange({ filter: filterValue });
   });
   country.forEach(function(item) {
     var continent = item.continent.toLowerCase()
