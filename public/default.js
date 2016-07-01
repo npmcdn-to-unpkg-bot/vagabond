@@ -151,6 +151,7 @@ function displayName(value) {
   htmlBlock('div', [['class', 'button'], ['data-filter', ".sa"]], 'South America', continent);
   var safety = htmlBlock('div', [['id', 'isotope-filters'],['class', 'button-group filters-button-group'],['data-filter-group', 'safety']], '', sideBar);
   htmlBlock('h3', [['class', 'safety']], 'Safety', safety);
+  htmlBlock('div', [['class', 'button is-checked'], ['data-filter', ""]], 'Any', safety);
   htmlBlock('div', [['class', 'button'], ['data-filter', ".safe"]], 'Stable', safety);
   htmlBlock('div', [['class', 'button'], ['data-filter', ".warning"]], 'Unstable', safety);
 
@@ -182,26 +183,26 @@ function isoItems(country) {
     itemSelector: '.grid-item-content'
   });
   var filterFunctions = {};
-  var filtersEl = document.querySelector('button-group');
+  function concatValues(obj) {
+    var value = '';
+    for (var prop in obj) {
+      value += obj[prop];
+  }
+  return value;
+}
   body.addEventListener('click', function(e) {
     if(e.className == 'button-group filters-button-group')  {
       if (!matchesSelector(e.target, 'div')) {
         return;
       }
     }
-    var filterValue = e.target.getAttribute('data-filter');
+    var buttonGroup = e.target.parentElement;
+    var filterGroup = buttonGroup.getAttribute('data-filter-group');
+    filterFunctions[filterGroup] = e.target.getAttribute('data-filter');
+
+    var filterValue = concatValues(filterFunctions);
     iso.arrange({ filter: filterValue });
   });
-
-  function radioButtonGroup(buttonGroup) {
-    buttonGroup.addEventListener('click', function(e) {
-      if (!matchesSelector(e.target, 'button')) {
-        return;
-      }
-      buttonGroup.querySelector('.is-checked').classList.remove('is-checked');
-      e.target.classList.add('is-checked');
-    });
-  }
   country.forEach(function(item) {
     var continent = item.continent.toLowerCase()
     if(item.language[0])  {
