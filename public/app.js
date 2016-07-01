@@ -17,7 +17,6 @@ app.use('/schedule', schedule);
 app.use('/itinerary', itinerary);
 app.use(express.static('./'));
 
-
 app.listen(8080, function() {
   console.log('everything is working!');
 });
