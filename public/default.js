@@ -110,7 +110,8 @@ function queue(e) {
   var country = e.target.offsetParent.dataset.country;
   if(places.indexOf(country) == -1 && e.target.nodeName == 'H4'){
     htmlBlock('button', [['class', 'btn btn-danger btn-xs remove-button'], ['data-button', country]], 'Remove', htmlBlock('div', [['class', 'button-parent']], '', theParent));
-    queueAdd(country);
+    var countryLower = country.toLowerCase();
+    queueAdd(countryLower);
   }
 }
 
@@ -155,18 +156,52 @@ function initCountries()  {
   xhr.send();
   xhr.addEventListener('load', function(e)  {
     var countries = JSON.parse(xhr.responseText);
+    // console.log(countries[0].language.language);
     isoItems(countries);
   });
 }
 
 function isoItems(country) {
   var grid = htmlBlock('div', [['class', 'grid']], '', countries);
-  var iso = new Isotope('.grid');
+  var iso = new Isotope('.grid', {
+    itemSelector: '.grid-item-content'
+  });
+  var filterFunctions = {};
+  var filtersEl = document.getElementsByClassName('button-group filters-button-group')[0];
+  filtersEl.addEventListener('click', function(e) {
+    if (!matchesSelector(e.target, 'button')) {
+      return;
+    }
+    var filterValue = e.target.getAttribute('data-filter');
+    iso.arrange({ filter: filterValue });
+  });
+
+  function radioButtonGroup(buttonGroup) {
+    buttonGroup.addEventListener('click', function(e) {
+      if (!matchesSelector(e.target, 'button')) {
+        return;
+      }
+      buttonGroup.querySelector('.is-checked').classList.remove('is-checked');
+      e.target.classList.add('is-checked');
+    });
+  }
   country.forEach(function(item) {
+    var continent = item.continent.toLowerCase()
+    if(item.language[0])  {
+      var language = item.language[0].language.toLowerCase();
+    } else {
+      language = 'none';
+    }
+    if(item.advise) {
+      var advise = item.advise.advise.toLowerCase();
+    } else {
+      advise = 'none';
+    }
+    var attributes = [['class', 'grid-item-content ' + continent + ' ' + language + ' ' + advise],['data-country', item.name]]
     var flag = item.img.toLowerCase();
     var name  = item.name.toLowerCase();
     var container = htmlBlock('div', [['class', 'grid-item']], '', grid);
-    var gridItem = htmlBlock('div', [['class', 'grid-item-content'], ['data-country', name]], '', container);
+    var gridItem = htmlBlock('div', attributes, '', container);
     htmlBlock('img', [['class', 'flag-image'],['src', 'images/' + flag + '.png']], '', gridItem);
     htmlBlock('div', [['class', 'country']], item.name, gridItem);
     container.appendChild(gridItem);
@@ -224,6 +259,7 @@ var Trip = function(destination, begin, end)  {
 function initPlaces(e, array) {
   if(e.target.className == 'view-itinerary')  {
     clearChildren(countries);
+    clearChildren(itinerary);
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/countries');
     xhr.send();
@@ -253,7 +289,6 @@ function itineraryRow(name, countries) {
       return item;
     }
   });
-
   var flag = image[0].img.toLowerCase();
   console.log(flag);
   var country = name;
@@ -304,7 +339,7 @@ function overlay(e) {
   var height = e.target.clientHeight;
   var width = e.target.clientWidth;
   var country = e.target.offsetParent.dataset.country;
-  if(theParent.className == 'grid-item-content' && element == 'IMG') {
+  if(theParent.classList.contains('grid-item-content') && element == 'IMG') {
     if(places.indexOf(country) != -1) {
       var message = 'You have already added '  + country;
       var pointer = 'cursor: not-allowed;';
