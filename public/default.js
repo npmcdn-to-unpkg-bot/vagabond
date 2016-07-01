@@ -131,7 +131,8 @@ function queueAdd(country)  {
 }
 
 function displayName(value) {
-  var anchor = document.getElementsByClassName('sidebar')[0];
+  var anchor = document.getElementsByClassName('sidebar-top')[0];
+  var sideBar = document.getElementsByClassName('sidebar')[0];
   if(value.length < 1 || value == 'Login')  {
     var className = 'login';
   } else {
@@ -139,6 +140,20 @@ function displayName(value) {
   }
   htmlBlock('span', [], value, htmlBlock('div', [['class', className]], '', anchor));
   htmlBlock('div', [['class', 'view-itinerary']], 'View Itinerary', anchor);
+  var continent = htmlBlock('div', [['id', 'isotope-filters'],['class', 'button-group filters-button-group'],['data-filter-group', 'continent']], '', sideBar);
+  htmlBlock('h3', [['class', 'continents']], 'Continents', continent);
+  htmlBlock('div', [['class', 'button is-checked'], ['data-filter', ""]], 'Any', continent);
+  htmlBlock('div', [['class', 'button'], ['data-filter', ".af"]], 'Africa', continent);
+  htmlBlock('div', [['class', 'button'], ['data-filter', ".as"]], 'Asia', continent);
+  htmlBlock('div', [['class', 'button'], ['data-filter', ".eu"]], 'Europe', continent);
+  htmlBlock('div', [['class', 'button'], ['data-filter', ".oc"]], 'Oceana', continent);
+  htmlBlock('div', [['class', 'button'], ['data-filter', ".na"]], 'North America', continent);
+  htmlBlock('div', [['class', 'button'], ['data-filter', ".sa"]], 'South America', continent);
+  var safety = htmlBlock('div', [['id', 'isotope-filters'],['class', 'button-group filters-button-group'],['data-filter-group', 'safety']], '', sideBar);
+  htmlBlock('h3', [['class', 'safety']], 'Safety', safety);
+  htmlBlock('div', [['class', 'button'], ['data-filter', ".safe"]], 'Stable', safety);
+  htmlBlock('div', [['class', 'button'], ['data-filter', ".warning"]], 'Unstable', safety);
+
 }
 
 function returnCountries(e) {
@@ -167,10 +182,12 @@ function isoItems(country) {
     itemSelector: '.grid-item-content'
   });
   var filterFunctions = {};
-  var filtersEl = document.getElementsByClassName('button-group filters-button-group')[0];
-  filtersEl.addEventListener('click', function(e) {
-    if (!matchesSelector(e.target, 'button')) {
-      return;
+  var filtersEl = document.querySelector('button-group');
+  body.addEventListener('click', function(e) {
+    if(e.className == 'button-group filters-button-group')  {
+      if (!matchesSelector(e.target, 'div')) {
+        return;
+      }
     }
     var filterValue = e.target.getAttribute('data-filter');
     iso.arrange({ filter: filterValue });
@@ -195,9 +212,9 @@ function isoItems(country) {
     if(item.advise) {
       var advise = item.advise.advise.toLowerCase();
     } else {
-      advise = 'none';
+      advise = 'safe';
     }
-    var attributes = [['class', 'grid-item-content ' + continent + ' ' + language + ' ' + advise],['data-country', item.name]]
+    var attributes = [['class', 'grid-item-content continent safety ' + continent + ' ' + language + ' ' + advise],['data-country', item.name]]
     var flag = item.img.toLowerCase();
     var name  = item.name.toLowerCase();
     var container = htmlBlock('div', [['class', 'grid-item']], '', grid);
