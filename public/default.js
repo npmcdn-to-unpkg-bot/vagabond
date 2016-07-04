@@ -38,6 +38,8 @@ body.addEventListener('click', function(e)  {
   initPlaces(e, places);
   returnCountries(e);
   createLayout(e);
+  initDetails(e);
+  console.log(e.target);
 });
 
 // Constructor Functions *****************************//
@@ -94,9 +96,28 @@ var Itinerary = function(schedule)  {
 
 var Country = function(item)  {
   this.name = item.name;
+  this.queue = false;
   this.continent = item.continent;
   this.flag = item.img;
-  this.queue = false;
+  this.timezone = item.timezone;
+  this.voltage = item.electricity.voltage;
+  this.frequency = item.electricity.frequency;
+  this.plugs = item.electricity.plugs;
+  this.getPlugImage = function()  {
+    return this.plugs.map(function(items)  {
+      var plug = items.toLowerCase();
+      return 'plugs/' + plug + '.png';
+    });
+  }
+  this.plugImage = this.getPlugImage();
+  this.getWater = function()  {
+    if(item.water == null)  {
+      return 'No data';
+    } else {
+      return item.water;
+    }
+  }
+  this.water = this.getWater();
   this.getAdvise = function()  {
     if(item.advise) {
       return item.advise.advise;
@@ -113,9 +134,18 @@ var Country = function(item)  {
     }
   }
   this.language = this.getLanguage();
+  this.getVaccinations = function() {
+    if(item.vaccinations.length < 1)  {
+      return 'None';
+    } else {
+      return item.vaccinations;
+    }
+  }
+  this.vaccinations = this.getVaccinations();
   this.normalize = function(property) {
     return property.toLowerCase();
   }
+
 }
 
 var User = function(result) {
@@ -265,7 +295,7 @@ function createLayout(e)  {
     filterFunctions[filterGroup] = e.target.getAttribute('data-filter');
     console.log(filterFunctions);
     var filterValue = concatValues(filterFunctions);
-  } else if (e.target.className == 'view-itinerary') {
+  } else if (e.target.className == 'view-itinerary' || e.target.classList.contains('country-details')) {
       filterValue = 'kill';
   } else if(e.target.id == 'return-countries')  {
       filterValue = '';
@@ -416,7 +446,7 @@ function overlay(e) {
     var message = 'View Details';
     var pointer = 'cursor: pointer';
     var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
-    var overLayTextStyles = [['class', 'overlay'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%;' + pointer]];
+    var overLayTextStyles = [['class', 'overlay country-details'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%;' + pointer]];
     var overlay = htmlBlock('div', overLayStyles, '', theParent);
     var overlayText = htmlBlock('h4', overLayTextStyles, message, theParent);
   }
@@ -424,7 +454,57 @@ function overlay(e) {
     $('.overlay').remove();
   }, false);
 }
+function initDetails(e) {
+  if(e.target.classList.contains('country-details'))  {
+    console.log('country-details');
+    var country = e.target.offsetParent.dataset.country;
+    console.log(e.target.offsetParent);
+    var call = new Call('GET');
+    call.path = '/countries/short/' + country;
+    call.request(function(result) {
+      details(result);
+    });
+  }
+}
+function details(data)  {
+  var country = new Country(data);
+  console.log(country.name);
+  var details = document.getElementById('details');
+  var container = htmlBlock('div', [['class', 'well details']], '', details);
+  var inner = htmlBlock('div', [['class', 'inner']], '', container);
 
+  htmlBlock('h2', [], country.name, inner);
+  htmlBlock('div', [['class', 'btn btn-warning']], 'Add to Itinerary', inner);
+
+  var row = htmlBlock('div', [['class', 'row']], '', inner);
+  var left = htmlBlock('div', [['class', 'col-md-6']], '', row);
+
+  var innerOne = ('div', [['class', 'inner-container']], '', left);
+  htmlBlock('h4', [], 'Official Language', innerOne);
+  htmlBlock('p', [], country.language, innerOne);
+
+  var innerTwo = ('div', [['class', 'inner-container']], '', left);
+  htmlBlock('h4', [], 'Timezone', innerTwo);
+  htmlBlock('p', [], country.timezone, innerTwo);
+
+  var innerThree = ('div', [['class', 'inner-container']], '', left);
+  htmlBlock('h4', [], 'Electricity', innerThree);
+  htmlBlock('p', [], 'Voltage: ' + country.voltage, innerThree);
+  htmlBlock('p', [], 'Frequency: ' + country.frequency, innerThree);
+  htmlBlock('a', [['class', 'btn btn-default btn-xs'], ['role', 'button'], ['data-toggle', 'collapse'], ['href', '#plugs-' + country.name]], 'View Plugs', innerThree);
+
+  var plugs = htmlBlock('div', [['class', 'collapse'], ['id', 'plugs-' + country.name]], '', innerThree);
+  var plugsWell = htmlBlock('div', [['class', 'well']], '', plugs);
+  for(var i = 0; i < country.plugs.length; i++)  {
+    let plug = htmlBlock('div', [['class', 'plug']], '', plugsWell);
+    htmlBlock('p', [], 'Plug Type ' + country.plugs[i], plug);
+    htmlBlock('img', [['src', country.plugImage[i]], ['alt', country.plugs[i]]], '', plug);
+  };
+
+  var right = htmlBlock('div', [['class', 'col-md-6']], '', row);
+
+
+}
 
 // Helper functions ***************************//
 // ******************************************//
