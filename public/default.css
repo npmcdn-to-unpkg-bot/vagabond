@@ -6,7 +6,7 @@ body  { background-color: #f3f3f3; }
   margin: 20px;
 }
 
-.overlay {
+.country-title {
   text-transform: capitalize;
 }
 
@@ -91,4 +91,24 @@ body  { background-color: #f3f3f3; }
   float: right;
   margin-right: 10px;
   margin-top: 5px;
+}
+
+.well.details {
+  position: relative;
+  margin-top: 20px;
+}
+
+.inner button.close {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  font-size: 36px;
+}
+
+.vaccinations { margin-bottom: 10px; }
+
+.vaccinations span  { margin-right: 60px; }
+
+.inner-container  {
+  padding: 5px;
 }

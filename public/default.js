@@ -4,6 +4,7 @@
 var body = document.body;
 var countries = document.getElementById('countries');
 var itinerary = document.getElementById('itinerary');
+var details = document.getElementById('details');
 var places = [];
 var schedule = [];
 var currentUser = [];
@@ -39,7 +40,6 @@ body.addEventListener('click', function(e)  {
   returnCountries(e);
   createLayout(e);
   initDetails(e);
-  console.log(e.target);
 });
 
 // Constructor Functions *****************************//
@@ -297,8 +297,8 @@ function createLayout(e)  {
     var filterValue = concatValues(filterFunctions);
   } else if (e.target.className == 'view-itinerary' || e.target.classList.contains('country-details')) {
       filterValue = 'kill';
-  } else if(e.target.id == 'return-countries')  {
-      filterValue = '';
+  } else if(e.target.id == 'return-countries' || e.target.className == 'close')  {
+      filterValue = concatValues(filterFunctions);
   } else {
       return;
   }
@@ -462,17 +462,18 @@ function initDetails(e) {
     var call = new Call('GET');
     call.path = '/countries/short/' + country;
     call.request(function(result) {
-      details(result);
+      countryDetails(result);
     });
+  } else if(e.target.className == 'close')  {
+    clearChildren(details);
   }
 }
-function details(data)  {
+function countryDetails(data)  {
+  clearChildren(details);
   var country = new Country(data);
-  console.log(country.name);
-  var details = document.getElementById('details');
   var container = htmlBlock('div', [['class', 'well details']], '', details);
   var inner = htmlBlock('div', [['class', 'inner']], '', container);
-
+  htmlBlock('button', [['type', 'button'], ['class', 'close'], ['aria-label', 'Close']], 'x', inner);
   htmlBlock('h2', [], country.name, inner);
   htmlBlock('div', [['class', 'btn btn-warning']], 'Add to Itinerary', inner);
 
@@ -502,6 +503,27 @@ function details(data)  {
   };
 
   var right = htmlBlock('div', [['class', 'col-md-6']], '', row);
+
+  var oneInner = htmlBlock('div', [['class', 'inner-container']], '', right);
+  htmlBlock('h4', [], 'Vaccination Requirements', oneInner);
+  if(country.vaccinations == 'None')  {
+    htmlBlock('p', [], 'None', oneInner);
+  } else {
+    for(var i = 0; i < country.vaccinations.length; i++)  {
+      let prefix = country.vaccinations[i].name.slice(0, 3).toLowerCase();
+      let suffix = country.vaccinations[i].name.slice(-1).toLowerCase();
+      var vacContainer = htmlBlock('div', [['class', 'vaccinations']], '', oneInner);
+      htmlBlock('span', [], country.vaccinations[i].name, vacContainer);
+      htmlBlock('a', [['class', 'btn btn-default btn-xs'], ['role', 'button'], ['data-toggle', 'collapse'], ['href', '#' + prefix + suffix]], 'Details', vacContainer);
+      let vaccine = htmlBlock('div', [['class', 'collapse'], ['id', prefix + suffix]], '', vacContainer);
+      htmlBlock('p', [], country.vaccinations[i].message, htmlBlock('div', [['class', 'well']], '', vaccine));
+    }
+  }
+
+  var twoInner = htmlBlock('div', [['class', 'inner-container']], '', right);
+  htmlBlock('h4', [], 'Safety Concerns', twoInner);
+  htmlBlock('span', [], country.water, htmlBlock('p', [], 'Water: ', twoInner));
+  htmlBlock('span', [], country.advise, htmlBlock('p', [], 'Political Climate: ', twoInner));
 
 
 }
