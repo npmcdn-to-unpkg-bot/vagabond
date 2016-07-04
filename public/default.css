@@ -49,12 +49,12 @@ body  { background-color: #f3f3f3; }
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   font-weight: 700;
 }
-.button {
+.filter-button {
   padding: 2px 15px;
   color: rgba(255,255,255,.5);
 }
 
-.button:hover {
+.filter-button:hover {
   color: rgba(255,255,255,.9);
   cursor: pointer;
 }
