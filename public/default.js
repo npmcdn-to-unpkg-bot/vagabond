@@ -9,8 +9,9 @@ var schedule = [];
 var currentUser = [];
 var grid = htmlBlock('div', [['class', 'grid']], '', countries);
 var iso = new Isotope('.grid', {
-  // itemSelector: '.grid-item-content'
+  itemSelector: '.grid-item-content'
 });
+var filterFunctions = {};
 
 // Events ***************************************//
 //**********************************************//
@@ -24,11 +25,6 @@ window.addEventListener('load', function(e) {
     user.populate();
     user.init(sideBar);
   });
-  // userCall(function(result)  {
-  //   var user = new User(result);
-  //   user.populate();
-  //   user.init(sideBar);
-  // });
 });
 
 body.addEventListener('mouseover', function(e)  {
@@ -36,8 +32,8 @@ body.addEventListener('mouseover', function(e)  {
 });
 
 body.addEventListener('click', function(e)  {
-  addButton(e);
-  removeButton(e);
+  // addButton(e);
+  // removeButton(e);
   initItinerary(e);
   initPlaces(e, places);
   returnCountries(e);
@@ -148,7 +144,6 @@ var User = function(result) {
   }
 }
 
-
 var Queue = function(country)  {
   this.country = country;
   var data = {};
@@ -175,9 +170,6 @@ var Queue = function(country)  {
   }
 }
 
-// AJAX Functions ********************//
-//***********************************//
-
 var Call = function(verb) {
   this.verb = verb;
   this.request = function(argument) {
@@ -197,65 +189,6 @@ var Call = function(verb) {
     }
   }
 }
-
-// function userCall(callback)  {
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('GET', '/check/' + document.cookie);
-//   xhr.addEventListener('load', function() {
-//     callback(JSON.parse(xhr.responseText));
-//   });
-//   xhr.send();
-// }
-
-// function scheduleCall(data) {
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('PUT', '/schedule/put');
-//   xhr.setRequestHeader('Content-type', 'application/json');
-//   xhr.send(JSON.stringify(data));
-//   xhr.addEventListener('load', function(e)  {
-//     console.log(xhr.responseText);
-//   });
-// }
-
-// function itineraryCall(data)  {
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('POST', '/itinerary/post');
-//   xhr.setRequestHeader('Content-type', 'application/json');
-//   xhr.send(JSON.stringify(data));
-//   xhr.addEventListener('load', function(e)  {
-//     console.log(xhr.responseText);
-//   });
-// }
-// function removeCountry(data) {
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('DELETE', '/queue/delete');
-//   xhr.setRequestHeader('Content-type', 'application/json');
-//   xhr.send(JSON.stringify(data));
-//   xhr.addEventListener('load', function(e)  {
-//     var data = xhr.responseText;
-//     console.log(data);
-//   });
-// }
-
-// function addCountry(data)  {
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('PUT', '/queue/put');
-//   xhr.setRequestHeader('Content-type', 'application/json');
-//   xhr.send(JSON.stringify(data));
-//   xhr.addEventListener('load', function(e)  {
-//     var data = xhr.responseText;
-//     console.log(data);
-//   });
-// }
-
-// function countryCall(callback)  {
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('GET', '/countries');
-//   xhr.send();
-//   xhr.addEventListener('load', function(e) {
-//     callback(JSON.parse(xhr.responseText));
-//   });
-// }
 
 // Initialization Funcitons *******************************//
 //********************************************************//
@@ -319,15 +252,7 @@ function displayName(name) {
 }
 
 function createLayout(e)  {
-  var filterFunctions = {};
   if(e.target.classList.contains('filter-button')) {
-    function concatValues(obj) {
-      var value = '';
-      for (var prop in obj) {
-        value += obj[prop];
-    }
-    return value;
-  }
     if(e.className == 'button-group filters-button-group')  {
       if (!matchesSelector(e.target, 'div')) {
         return;
@@ -335,46 +260,50 @@ function createLayout(e)  {
     }
     var buttonGroup = e.target.parentElement;
     var filterGroup = buttonGroup.getAttribute('data-filter-group');
+    console.log(e.target.getAttribute('data-filter'));
+    console.log(filterGroup);
     filterFunctions[filterGroup] = e.target.getAttribute('data-filter');
-    // e.target.getAttribute('data-filter')
-    console.log()
+    console.log(filterFunctions);
     var filterValue = concatValues(filterFunctions);
   } else if (e.target.className == 'view-itinerary') {
-    filterValue = 'kill';
+      filterValue = 'kill';
   } else if(e.target.id == 'return-countries')  {
-    filterValue = '';
+      filterValue = '';
   } else {
-    return;
+      return;
   }
   iso.arrange({ filter: filterValue });
-  console.log(filterValue);
+  function concatValues(obj) {
+    var value = '';
+    for (var prop in obj) {
+      value += obj[prop];
+    }
+    return value;
+  }
 }
-
-
-
 
 // DOM Manipulation *******************************************//
 //*************************************************************//
-function addButton(e) {
-  var theParent = e.target.offsetParent;
-  var country = e.target.offsetParent.dataset.country;
-  if(places.indexOf(country) == -1 && e.target.nodeName == 'H4'){
-    htmlBlock('button', [['class', 'btn btn-danger btn-xs remove-button'], ['data-button', country]], 'Remove', htmlBlock('div', [['class', 'button-parent']], '', theParent));
-    var countryLower = country.toLowerCase();
-    var queue = new Queue(countryLower);
-    queue.add();
-  }
-}
-
-function removeButton(e) {
-  var theParent = e.target.parentElement;
-  var country = e.target.dataset.button;
-  if(theParent.className == 'button-parent')  {
-    clearChildren(theParent);
-    var queue = new Queue(country);
-    queue.remove();
-  }
-}
+// function addButton(e) {
+//   var theParent = e.target.offsetParent;
+//   var country = e.target.offsetParent.dataset.country;
+//   if(places.indexOf(country) == -1 && e.target.nodeName == 'H4'){
+//     htmlBlock('button', [['class', 'btn btn-danger btn-xs remove-button'], ['data-button', country]], 'Remove', htmlBlock('div', [['class', 'button-parent']], '', theParent));
+//     var countryLower = country.toLowerCase();
+//     var queue = new Queue(countryLower);
+//     queue.add();
+//   }
+// }
+//
+// function removeButton(e) {
+//   var theParent = e.target.parentElement;
+//   var country = e.target.dataset.button;
+//   if(theParent.className == 'button-parent')  {
+//     clearChildren(theParent);
+//     var queue = new Queue(country);
+//     queue.remove();
+//   }
+// }
 
 function displayFilters(name, className) {
   var anchor = document.getElementsByClassName('sidebar-top')[0];
@@ -484,13 +413,8 @@ function overlay(e) {
   var width = e.target.clientWidth;
   var country = e.target.offsetParent.dataset.country;
   if(theParent.classList.contains('grid-item-content') && element == 'IMG') {
-    if(places.indexOf(country) != -1) {
-      var message = 'You have already added '  + country;
-      var pointer = 'cursor: not-allowed;';
-    } else {
-      message = 'Add to Itinerary';
-      pointer = 'cursor: pointer;';
-    }
+    var message = 'View Details';
+    var pointer = 'cursor: pointer';
     var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
     var overLayTextStyles = [['class', 'overlay'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%;' + pointer]];
     var overlay = htmlBlock('div', overLayStyles, '', theParent);

@@ -12,6 +12,8 @@ schedule.put('/put', function(req, res) {
   var user = req.body[1];
   var message = checkUser(user, trip);
   res.send(message);
+  console.log('Schedule');
+  console.log(users.users[0].schedule);
 });
 
 function checkUser(user, trip) {

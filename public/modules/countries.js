@@ -14,7 +14,6 @@ countriesLong.forEach(function(item)  {
 });
 
 countries.get('/', function(req, res) {
-
   console.log(message);
   res.send(message);
 });

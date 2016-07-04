@@ -12,6 +12,7 @@ itinerary.post('/post', function(req, res)  {
   var trip = req.body[1];
   var message = setItinerary(user, trip);
   res.send('message');
+  console.log('Itinerary');
   console.log(users.users[0].itinerary);
 });
 

@@ -11,6 +11,7 @@ queue.put('/put', function(req, res) {
   var country = req.body.country;
   var user = req.body.user;
   var message = addQueue(user, country);
+  console.log('Add');
   console.log(users.users[0].queue);
   res.send(message);
 });
@@ -19,6 +20,7 @@ queue.delete('/delete', function(req, res)  {
   var country = req.body.country;
   var user = req.body.user;
   var message = removeQueue(user, country);
+  console.log('Delete');
   console.log(users.users[0].queue);
   res.send(message);
 });
