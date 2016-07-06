@@ -220,6 +220,16 @@ var Call = function(verb) {
   }
 }
 
+var News = function(arg) {
+  this.data = function()  {
+    var info = arg.map(function(item)  {
+      return item.source.enriched.url;
+    });
+    return info;
+  }
+  this.story = this.data();
+}
+
 // Initialization Funcitons *******************************//
 //********************************************************//
 
@@ -261,6 +271,7 @@ function initCountries()  {
 function initPlaces(e, array) {
   if(e.target.className == 'view-itinerary')  {
     clearChildren(itinerary);
+    clearChildren(details);
     var call = new Call('GET');
     call.path = '/countries';
     call.request(function(result)  {
@@ -480,19 +491,40 @@ function countryDetails(data)  {
   var row = htmlBlock('div', [['class', 'row']], '', inner);
   var left = htmlBlock('div', [['class', 'col-md-6']], '', row);
 
-  var innerOne = ('div', [['class', 'inner-container']], '', left);
+  var innerOne = htmlBlock('div', [['class', 'inner-container']], '', left);
   htmlBlock('h4', [], 'Official Language', innerOne);
   htmlBlock('p', [], country.language, innerOne);
 
-  var innerTwo = ('div', [['class', 'inner-container']], '', left);
+  var innerTwo = htmlBlock('div', [['class', 'inner-container']], '', left);
   htmlBlock('h4', [], 'Timezone', innerTwo);
   htmlBlock('p', [], country.timezone, innerTwo);
 
-  var innerThree = ('div', [['class', 'inner-container']], '', left);
+  var innerThree = htmlBlock('div', [['class', 'inner-container']], '', left);
   htmlBlock('h4', [], 'Electricity', innerThree);
   htmlBlock('p', [], 'Voltage: ' + country.voltage, innerThree);
   htmlBlock('p', [], 'Frequency: ' + country.frequency, innerThree);
   htmlBlock('a', [['class', 'btn btn-default btn-xs'], ['role', 'button'], ['data-toggle', 'collapse'], ['href', '#plugs-' + country.name]], 'View Plugs', innerThree);
+
+  var innerFour = htmlBlock('div', [['class', 'inner-container']], '', left);
+  var theNews = htmlBlock('div', [['class', 'news']], '', innerFour);
+
+  var newsInit = function(data)  {
+    var news = new News(data);
+    var anchor = document.getElementsByClassName('news')[0];
+    htmlBlock('h4', [], 'Headlines', anchor);
+    console.log(news.story);
+    for(var i = 0; i < news.story.length; i++)  {
+      htmlBlock('p', [], news.story[i].title, htmlBlock('a', [['href', news.story[i].url]], '', anchor));
+    }
+  }
+  var call = new Call('GET');
+  call.path = '/news/' + country.name;
+
+  call.request(function(result) {
+    if(theNews) {
+      newsInit(result);
+    }
+  });
 
   var plugs = htmlBlock('div', [['class', 'collapse'], ['id', 'plugs-' + country.name]], '', innerThree);
   var plugsWell = htmlBlock('div', [['class', 'well']], '', plugs);
@@ -502,7 +534,7 @@ function countryDetails(data)  {
     htmlBlock('img', [['src', country.plugImage[i]], ['alt', country.plugs[i]]], '', plug);
   };
 
-  var right = htmlBlock('div', [['class', 'col-md-6']], '', row);
+  var right = htmlBlock('div', [['class', 'col-md-6 right']], '', row);
 
   var oneInner = htmlBlock('div', [['class', 'inner-container']], '', right);
   htmlBlock('h4', [], 'Vaccination Requirements', oneInner);
@@ -524,7 +556,6 @@ function countryDetails(data)  {
   htmlBlock('h4', [], 'Safety Concerns', twoInner);
   htmlBlock('span', [], country.water, htmlBlock('p', [], 'Water: ', twoInner));
   htmlBlock('span', [], country.advise, htmlBlock('p', [], 'Political Climate: ', twoInner));
-
 
 }
 

@@ -16,6 +16,7 @@ itinerary.post('/post', function(req, res)  {
   console.log(users.users[0].itinerary);
 });
 
+
 function setItinerary(user, trip) {
   message = '';
   users.users.forEach(function(item)  {
