@@ -33,8 +33,7 @@ body.addEventListener('mouseover', function(e)  {
 });
 
 body.addEventListener('click', function(e)  {
-  // addButton(e);
-  // removeButton(e);
+  addButton(e);
   initItinerary(e);
   initPlaces(e, places);
   returnCountries(e);
@@ -325,26 +324,21 @@ function createLayout(e)  {
 
 // DOM Manipulation *******************************************//
 //*************************************************************//
-// function addButton(e) {
-//   var theParent = e.target.offsetParent;
-//   var country = e.target.offsetParent.dataset.country;
-//   if(places.indexOf(country) == -1 && e.target.nodeName == 'H4'){
-//     htmlBlock('button', [['class', 'btn btn-danger btn-xs remove-button'], ['data-button', country]], 'Remove', htmlBlock('div', [['class', 'button-parent']], '', theParent));
-//     var countryLower = country.toLowerCase();
-//     var queue = new Queue(countryLower);
-//     queue.add();
-//   }
-// }
-//
-// function removeButton(e) {
-//   var theParent = e.target.parentElement;
-//   var country = e.target.dataset.button;
-//   if(theParent.className == 'button-parent')  {
-//     clearChildren(theParent);
-//     var queue = new Queue(country);
-//     queue.remove();
-//   }
-// }
+function addButton(e) {
+  var country = e.target.dataset.country;
+  var queue = new Queue(country);
+  var target = e.target;
+  if(places.indexOf(country) == -1 && e.target.className == 'btn btn-warning add-button')  {
+    queue.add();
+    target.textContent = 'Remove from Itinerary';
+    target.className = 'btn btn-danger button-remove';
+    return;
+  } else if(places.indexOf(country) > 0 && e.target.className == 'btn btn-danger button-remove')  {
+    queue.remove();
+    target.textContent = 'Add to Itinerary';
+    target.className = 'btn btn-warning add-button';
+  }
+}
 
 function displayFilters(name, className) {
   var anchor = document.getElementsByClassName('sidebar-top')[0];
@@ -486,7 +480,7 @@ function countryDetails(data)  {
   var inner = htmlBlock('div', [['class', 'inner']], '', container);
   htmlBlock('button', [['type', 'button'], ['class', 'close'], ['aria-label', 'Close']], 'x', inner);
   htmlBlock('h2', [], country.name, inner);
-  htmlBlock('div', [['class', 'btn btn-warning']], 'Add to Itinerary', inner);
+  htmlBlock('div', [['class', 'btn btn-warning add-button'], ['data-country', country.name]], 'Add to Itinerary', inner);
 
   var row = htmlBlock('div', [['class', 'row']], '', inner);
   var left = htmlBlock('div', [['class', 'col-md-6']], '', row);
@@ -517,14 +511,14 @@ function countryDetails(data)  {
       htmlBlock('p', [], news.story[i].title, htmlBlock('a', [['href', news.story[i].url]], '', anchor));
     }
   }
-  var call = new Call('GET');
-  call.path = '/news/' + country.name;
-
-  call.request(function(result) {
-    if(theNews) {
-      newsInit(result);
-    }
-  });
+  // var call = new Call('GET');
+  // call.path = '/news/' + country.name;
+  //
+  // call.request(function(result) {
+  //   if(theNews) {
+  //     newsInit(result);
+  //   }
+  // });
 
   var plugs = htmlBlock('div', [['class', 'collapse'], ['id', 'plugs-' + country.name]], '', innerThree);
   var plugsWell = htmlBlock('div', [['class', 'well']], '', plugs);
