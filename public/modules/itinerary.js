@@ -11,7 +11,7 @@ itinerary.post('/post', function(req, res)  {
   var user = req.body[0];
   var trip = req.body[1];
   var message = setItinerary(user, trip);
-  res.send('message');
+  res.send(message);
   console.log('Itinerary');
   console.log(users.users[0].itinerary);
 });
@@ -22,7 +22,7 @@ function setItinerary(user, trip) {
   users.users.forEach(function(item)  {
     if(item.username == user) {
       item.itinerary.push(trip);
-      message = 'Trip added';
+      message = 'Itinerary added';
     } else {
       message = 'Could not find ' + user;
     }
