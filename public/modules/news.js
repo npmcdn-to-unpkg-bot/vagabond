@@ -15,7 +15,7 @@ function initWatson(country, callback) {
   var params = {
     start: 'now-1d',
     end: 'now',
-    count: 1,
+    count: 3,
     'q.enriched.url.text': country,
     'q.enriched.url.taxonomy.taxonomy_.label': 'travel',
     return: 'enriched.url.title,enriched.url.url'
