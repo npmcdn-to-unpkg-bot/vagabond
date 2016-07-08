@@ -1,6 +1,6 @@
 // Global Variables *******************************//
 //*************************************************//
-
+document.cookie = "name=derp";
 var body = document.body;
 var countries = document.getElementById('countries');
 var itinerary = document.getElementById('itinerary');
@@ -19,13 +19,19 @@ var filterFunctions = {};
 
 window.addEventListener('load', function(e) {
   initCountries();
-  var call = new Call('GET');
-  call.path = '/check/' + document.cookie;
-  call.request(function(result)  {
-    var user = new User(result);
+  if(document.cookie) {
+    var call = new Call('GET');
+    call.path = '/check/' + document.cookie;
+    call.request(function(result)  {
+      var user = new User(result);
+      user.populate();
+      user.init(sideBar);
+    });
+  } else {
+    var user = new User('empty');
     user.populate();
     user.init(sideBar);
-  });
+  }
 });
 
 body.addEventListener('mouseover', function(e)  {
@@ -89,7 +95,14 @@ var Itinerary = function(schedule)  {
     var data = [currentUser[0], dataObject];
     var call = new Call('POST');
     call.path = '/itinerary/post';
-    call.request(data);
+    call.request(data, function(result) {
+      if(result == 'Itinerary added') {
+        var call = new Call('POST');
+        call.path = '/email';
+        var data = '<h1>Hello</h1>'
+        call.request(data);
+      }
+    });
   }
 }
 
@@ -201,7 +214,7 @@ var Queue = function(country)  {
 
 var Call = function(verb) {
   this.verb = verb;
-  this.request = function(argument) {
+  this.request = function(argument, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open(this.verb, this.path);
     xhr.setRequestHeader('Content-type', 'application/json');
@@ -211,6 +224,13 @@ var Call = function(verb) {
         argument(JSON.parse(xhr.responseText));
       });
     } else {
+      if(callback)  {
+        xhr.send(JSON.stringify(argument));
+        xhr.addEventListener('load', function(e)  {
+          callback(xhr.responseText);
+        });
+        return;
+      }
       xhr.send(JSON.stringify(argument));
       xhr.addEventListener('load', function(e)  {
         console.log(xhr.responseText);
@@ -231,6 +251,14 @@ var News = function(arg) {
 
 // Initialization Funcitons *******************************//
 //********************************************************//
+function initLogin(e) {
+  if(document.cookie) {
+    return;
+  } else if(e.target.className == 'login-panel')  {
+    document.cookie = "name=derp";
+  }
+}
+
 
 function sideBar(user)  {
   if(user.username) {
@@ -322,6 +350,7 @@ function createLayout(e)  {
   }
 }
 
+
 // DOM Manipulation *******************************************//
 //*************************************************************//
 function addButton(e) {
@@ -332,6 +361,13 @@ function addButton(e) {
     queue.add();
     target.textContent = 'Remove from Itinerary';
     target.className = 'btn btn-danger button-remove';
+    var call = new Call('GET');
+    call.path = '/alert/' + upperCase(country);
+    call.request(function(result) {
+      if(result.message == 'alert') {
+        htmlBlock('div', [['class', 'btn btn-danger alert']], country.toUpperCase() + '!!!', body);
+      }
+    });
     return;
   } else if(places.indexOf(country) > 0 && e.target.className == 'btn btn-danger button-remove')  {
     queue.remove();
@@ -343,7 +379,7 @@ function addButton(e) {
 function displayFilters(name, className) {
   var anchor = document.getElementsByClassName('sidebar-top')[0];
   var sideBar = document.getElementsByClassName('sidebar')[0];
-  htmlBlock('span', [], name, htmlBlock('div', [['class', className]], '', anchor));
+  htmlBlock('span', [['class', 'login-panel']], name, htmlBlock('div', [['class', className]], '', anchor));
   htmlBlock('div', [['class', 'view-itinerary']], 'View Itinerary', anchor);
   var continent = htmlBlock('div', [['id', 'isotope-filters'],['class', 'button-group filters-button-group'],['data-filter-group', 'continent']], '', sideBar);
   htmlBlock('h3', [['class', 'continents']], 'Continents', continent);
@@ -359,6 +395,12 @@ function displayFilters(name, className) {
   htmlBlock('div', [['class', 'filter-button is-checked'], ['data-filter', ""]], 'Any', safety);
   htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".safe"]], 'Stable', safety);
   htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".warning"]], 'Unstable', safety);
+  var language = htmlBlock('div', [['id', 'isotope-filters'],['class', 'button-group filters-button-group'], ['data-filter-group', 'language']], '', sideBar);
+  htmlBlock('h3', [['class', 'language']], 'Language', language);
+  htmlBlock('div', [['class', 'filter-button is-checked'], ['data-filter', ""]], 'Any', language);
+  htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".arabic"]], 'Arabic', language);
+  htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".english"]], 'English', language);
+  htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".spanish"]], 'Spanish', language);
 }
 
 function getCountry(country, iso)  {
@@ -461,6 +503,7 @@ function overlay(e) {
 }
 function initDetails(e) {
   if(e.target.classList.contains('country-details'))  {
+    clearChildren(itinerary);
     console.log('country-details');
     var country = e.target.offsetParent.dataset.country;
     console.log(e.target.offsetParent);
@@ -480,7 +523,7 @@ function countryDetails(data)  {
   var inner = htmlBlock('div', [['class', 'inner']], '', container);
   htmlBlock('button', [['type', 'button'], ['class', 'close'], ['aria-label', 'Close']], 'x', inner);
   htmlBlock('h2', [], country.name, inner);
-  htmlBlock('div', [['class', 'btn btn-warning add-button'], ['data-country', country.name]], 'Add to Itinerary', inner);
+  htmlBlock('div', [['class', 'btn btn-warning add-button'], ['data-country', country.normalize(country.name)]], 'Add to Itinerary', inner);
 
   var row = htmlBlock('div', [['class', 'row']], '', inner);
   var left = htmlBlock('div', [['class', 'col-md-6']], '', row);
@@ -590,6 +633,16 @@ function toggleClass(element, name) {
       var deleteItem = classArray.splice(arrayIndex, 1);
       element.className = classArray.join(' ');
     }
+}
+
+function upperCase(text) {
+  text = text.toLowerCase().split(' ');
+  for(var i = 0; i < text.length; i++){
+    text[i] = text[i].split('');
+    text[i][0] = text[i][0].toUpperCase();
+    text[i] = text[i].join('');
+  }
+  return text.join(' ');
 }
 
 function clearChildren(container)  {

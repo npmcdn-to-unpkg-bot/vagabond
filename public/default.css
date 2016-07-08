@@ -105,6 +105,11 @@ body  { background-color: #f3f3f3; }
   font-size: 36px;
 }
 
+.plug {
+  display: inline-block;
+  margin-right: 5%;
+}
+
 .vaccinations { margin-bottom: 10px; }
 
 .vaccinations a  {
@@ -114,4 +119,14 @@ body  { background-color: #f3f3f3; }
 
 .inner-container  {
   padding: 5px;
+}
+.btn.btn-danger.alert {
+  position: fixed;
+  top: 5%;
+  right: 15px;
+  border-radius: 0px;
+}
+
+.well {
+  margin-top: 5%;
 }
