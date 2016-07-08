@@ -18,7 +18,7 @@ check.get('/:id', function(req, res) {
   if(value)  {
     res.send(message);
   } else {
-    res.send({})
+    res.send({message: 'not found'});
   }
 });
 
