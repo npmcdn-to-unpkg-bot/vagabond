@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var watson = require('watson-developer-cloud');
 var env = require('../env.js');
@@ -8,7 +9,6 @@ alert.use(jsonParser);
 
 alert.get('/:id', function(req, res) {
   var country = req.params.id;
-  var scores = [];
   var score = 0;
   var filteredText = countries.filter(function(item)  {
     if(item.names.name == country)  {
@@ -21,42 +21,57 @@ alert.get('/:id', function(req, res) {
 
   alchemy.call(function(item) {
     var data = feed(item);
-    for(var i = 0; i < data.length - 1; i++)  {
+    var index = 0;
+    var words = [];
+    for(let i = 0; i < data.length; i++)  {
       var text = data[i].text;
       var alchemy = new Alchemy(data[i].text, 'sentiment');
       alchemy.call(function(called) {
         var dataObject = {}
+        // console.log(data[i]);
           if(called.docSentiment.type == 'neutral') {
           dataObject.type = called.docSentiment.type;
           dataObject.score = 0;
-        } else {
+          dataObject.message = '';
+        } else if(data[i].relevance >= .9) {
           dataObject.type = called.docSentiment.type;
           dataObject.score = Math.pow(called.docSentiment.score, 3);
+          dataObject.message = data[i].text;
+        } else if(data[i].relevance < .9){
+          dataObject.type = called.docSentiment.type;
+          dataObject.score = Math.pow(called.docSentiment.score, 3);
+          dataObject.message = '';
         }
-        if(scores.length > 10 && score < 0)  {
+        if(index > 10 && score < 0)  {
           return;
         } else {
         call(dataObject);
         }
       });
     }
-
     function call(data) {
-      scores.push(data);
+      index++;
+      var obj = {};
+      var message;
       score += data.score;
-      console.log('score ' + score);
-      if(scores.length > 10 && score < 0)  {
-        message = 'alert';
-      } else {
-        message = 'clear';
+      if(data.message.length > 0 && data.score < 0) {
+        words.push(data.message);
       }
-      sendMessage(message);
+      if(index > 10 && score < 0)  {
+        obj.keywords = words;
+        obj.message = 'alert';
+      } else {
+        obj.message = 'clear';
+      }
+
+      sendMessage(obj);
     }
   });
 
-  function sendMessage(message) {
-    if(message == 'alert')  {
-      res.send({message: 'alert'});
+  function sendMessage(obj) {
+    if(obj.message == 'alert')  {
+      res.send(obj);
+      console.log(obj);
     } else {
       console.log('clear');
       return;
@@ -90,4 +105,19 @@ var feed = function(data) {
   });
   return filtered;
 }
+
+alert.get('/wiki/result', function(req, res)  {
+  var country = 'Bangladesh';
+  var filteredText = countries.filter(function(item)  {
+    if(item.names.name == country)  {
+      return item;
+    }
+  });
+  var text = filteredText[0].wiki;
+  console.log(text);
+
+  var alchemy = new Alchey(text, 'combined');
+  res.send('wiki');
+});
+
 module.exports = alert;

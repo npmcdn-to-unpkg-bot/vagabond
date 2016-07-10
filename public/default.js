@@ -96,11 +96,12 @@ var Itinerary = function(schedule)  {
     var call = new Call('POST');
     call.path = '/itinerary/post';
     call.request(data, function(result) {
-      if(result == 'Itinerary added') {
+      var data = JSON.parse(result);
+      console.log(data.trip);
+      if(data.message == 'Itinerary added') {
         var call = new Call('POST');
         call.path = '/email';
-        var data = '<h1>Hello</h1>'
-        call.request(data);
+        call.request(data.trip);
       }
     });
   }
@@ -364,8 +365,12 @@ function addButton(e) {
     var call = new Call('GET');
     call.path = '/alert/' + upperCase(country);
     call.request(function(result) {
+      console.log(result);
       if(result.message == 'alert') {
-        htmlBlock('div', [['class', 'btn btn-danger alert']], country.toUpperCase() + '!!!', body);
+        var alert = htmlBlock('div', [['class', 'btn btn-danger alert']], country.toUpperCase() + '!!!', body);
+        result.keywords.forEach(function(word)  {
+          htmlBlock('div', [], word, alert);
+        });
       }
     });
     return;
