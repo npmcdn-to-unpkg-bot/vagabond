@@ -3,13 +3,13 @@ var cookieParser = require('cookie-parser')();
 var jsonParser = require('body-parser').json();
 var checkUsers = require('../data/users.js');
 var check = express.Router();
-
 check.use(jsonParser);
 check.use(cookieParser);
 
 check.get('/:id', function(req, res) {
   // console.log(req.params.id);
   // console.log(req.cookies.name);
+  console.log(req.params.id);
   var value = checkCookie(req.cookies.name);
   var message = {};
   message.username = value.username;

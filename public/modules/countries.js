@@ -3,7 +3,6 @@ var flags = require('../data/flags.js');
 var countriesLong = require('../data/countries.js');
 var countries = express.Router();
 var message = [];
-
 countriesLong.forEach(function(item)  {
   var data = {};
   data.name = item.names.name;
