@@ -371,7 +371,19 @@ function createLayout(e)  {
   }
 }
 
-
+function assignAlert(country) {
+    var call = new Call('GET');
+    call.path = '/alert/' + upperCase(country);
+    call.request(function(result) {
+      console.log(result);
+      if(result.message == 'alert') {
+        var alert = htmlBlock('div', [['class', 'btn btn-danger alert']], country.toUpperCase() + '!!!', body);
+        result.keywords.forEach(function(word)  {
+          htmlBlock('div', [], word, alert);
+        });
+      }
+    });
+  }
 // DOM Manipulation *******************************************//
 //*************************************************************//
 
