@@ -10,7 +10,7 @@ var email = require('./public/modules/email.js');
 var alert = require('./public/modules/alert.js');
 var server = require('http').createServer(app);
 
-app.set('port', (process.env.PORT || 8000));
+app.set('port', (process.env.PORT || 8080));
 
 app.use('/countries', countries);
 app.use('/check', check);
