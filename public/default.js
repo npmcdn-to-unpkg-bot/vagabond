@@ -241,6 +241,7 @@ var Call = function(verb) {
 }
 
 var News = function(arg) {
+  console.log(arg);
   this.data = function()  {
     var info = arg.map(function(item)  {
       return item.source.enriched.url;
@@ -549,24 +550,43 @@ function countryDetails(data)  {
 
   var innerFour = htmlBlock('div', [['class', 'inner-container']], '', left);
   var theNews = htmlBlock('div', [['class', 'news']], '', innerFour);
+  htmlBlock('h4', [['class', 'headlines']], 'Headlines', theNews);
 
-  var newsInit = function(data)  {
-    var news = new News(data);
-    var anchor = document.getElementsByClassName('news')[0];
-    htmlBlock('h4', [], 'Headlines', anchor);
-    console.log(news.story);
-    for(var i = 0; i < news.story.length; i++)  {
-      htmlBlock('p', [], news.story[i].title, htmlBlock('a', [['href', news.story[i].url]], '', anchor));
+  var innerRow = htmlBlock('div', [['class', 'row']], '', innerFour);
+  htmlBlock('button', [['class', 'btn btn-default news'], ['data-news', 'any']], 'Any', htmlBlock('div', [['class', 'col-md-4']], '', innerRow));
+  htmlBlock('button', [['class', 'btn btn-default news'], ['data-news', 'negative']], 'Negative', htmlBlock('div', [['class', 'col-md-4']], '', innerRow));
+  htmlBlock('button', [['class', 'btn btn-default news'], ['data-news', 'positive']], 'Positive', htmlBlock('div', [['class', 'col-md-4']], '', innerRow));
+  var newsList = htmlBlock('div', [['class', 'news-list']], '', innerFour);
+
+  function getNews(e) {
+    if(e.target.classList.contains('news')) {
+      var sentiment = e.target.dataset.news;
+      var call = new Call('PUT');
+      call.path = '/news';
+      var obj = {};
+      obj.country = country.name;
+      obj.sentiment = sentiment;
+      call.request(obj, function(message) {
+        var result = JSON.parse(message);
+        console.log(result);
+        if(theNews) {
+          newsInit(result);
+        }
+      });
+    } else {
+      return;
     }
   }
-  // var call = new Call('GET');
-  // call.path = '/news/' + country.name;
-  //
-  // call.request(function(result) {
-  //   if(theNews) {
-  //     newsInit(result);
-  //   }
-  // });
+  body.addEventListener('click', function(e)  {
+    getNews(e);
+  });
+  var newsInit = function(data)  {
+    clearChildren(newsList);
+    var news = new News(data);
+    for(var i = 0; i < news.story.length; i++)  {
+      htmlBlock('p', [], news.story[i].title, htmlBlock('a', [['href', news.story[i].url]], '', newsList));
+    }
+  }
 
   var plugs = htmlBlock('div', [['class', 'collapse'], ['id', 'plugs-' + country.name]], '', innerThree);
   var plugsWell = htmlBlock('div', [['class', 'well']], '', plugs);

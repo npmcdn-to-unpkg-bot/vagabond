@@ -130,3 +130,7 @@ body  { background-color: #f3f3f3; }
 .well {
   margin-top: 5%;
 }
+
+.news { width: 80px; }
+
+.news-list  { margin-top: 10px; }
