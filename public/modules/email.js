@@ -37,10 +37,12 @@ function send(toSend){
 }
 
 email.post('/', function(req, res)  {
-  console.log('email post');
   var data = req.body;
-  send(createMail(data));
-  res.send();
+  console.log('EMAIL');
+  console.log(req.body);
+  var message = data.itinerary[0].country + ' From: ' + data.itinerary[0].startDate + ' To: ' + data.itinerary[0].endDate;
+  send(createMail(message));
+  res.send(message);
 });
 
 module.exports = email;

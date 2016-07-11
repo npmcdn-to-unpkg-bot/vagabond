@@ -9,7 +9,6 @@ var news = require('./modules/news.js');
 var email = require('./modules/email.js');
 var alert = require('./modules/alert.js');
 
-
 app.use('/countries', countries);
 app.use('/check', check);
 app.use('/queue', queue);

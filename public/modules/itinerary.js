@@ -22,9 +22,9 @@ function setItinerary(user, trip) {
   users.users.forEach(function(item)  {
     if(item.username == user) {
       item.itinerary.push(trip);
-      message = 'Itinerary added';
+      message = { message:'Itinerary added', trip: trip };
     } else {
-      message = 'Could not find ' + user;
+      message = { message: 'Could not find ' + user, trip: 0 };
     }
   });
   return message;
