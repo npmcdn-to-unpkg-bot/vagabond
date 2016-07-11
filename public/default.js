@@ -119,7 +119,7 @@ var Country = function(item)  {
   this.getPlugImage = function()  {
     return this.plugs.map(function(items)  {
       var plug = items.toLowerCase();
-      return 'plugs/' + plug + '.png';
+      return 'images/plugs/' + plug + '.png';
     });
   }
   this.plugImage = this.getPlugImage();
@@ -422,7 +422,7 @@ function getCountry(country, iso)  {
     var grid = document.getElementsByClassName('grid')[0];
     var container = htmlBlock('div', [['class', 'grid-item']], '', grid);
     var gridItem = htmlBlock('div', attributes, '', container);
-    htmlBlock('img', [['class', 'flag-image'],['src', 'images/' + flag + '.png']], '', gridItem);
+    htmlBlock('img', [['class', 'flag-image'],['src', 'images/flags/' + flag + '.png']], '', gridItem);
     htmlBlock('div', [['class', 'country']], country.name, gridItem);
     container.appendChild(gridItem);
     iso.appended(gridItem);
@@ -457,7 +457,7 @@ function itineraryRow(name, countries) {
   var tableOne = htmlBlock('table', [['class', 'country-table']], '', columnOne);
   var rowOne = htmlBlock('tr', [], '', tableOne);
 
-  htmlBlock('img', [['src', 'small/' + flag + '.png']], '', htmlBlock('div', [['class', 'small-flag']], '', htmlBlock('td', [], '', rowOne)));
+  htmlBlock('img', [['src', 'images/small_flags/' + flag + '.png']], '', htmlBlock('div', [['class', 'small-flag']], '', htmlBlock('td', [], '', rowOne)));
   htmlBlock('div', [['class', 'country-name']], country, htmlBlock('td', [], '', rowOne));
 
   var columnTwo = htmlBlock('div', [['class', 'col-md-4']], '', outer);
