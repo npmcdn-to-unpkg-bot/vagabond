@@ -9,7 +9,8 @@ var news = require('./public/modules/news.js');
 var email = require('./public/modules/email.js');
 var alert = require('./public/modules/alert.js');
 var server = require('http').createServer(app);
-// var io = require('socket.io')(server);
+
+app.set('port', (process.env.PORT || 8000));
 
 app.use('/countries', countries);
 app.use('/check', check);
@@ -22,6 +23,6 @@ app.use('/alert', alert);
 app.use(express.static('public'));
 
 
-app.listen(8080, function() {
-  console.log('everything is working!');
+app.listen(app.get('port'), function()  {
+  console.log('Running on port', app.get('port'));
 });
