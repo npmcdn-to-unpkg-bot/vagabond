@@ -39,13 +39,32 @@ body.addEventListener('mouseover', function(e)  {
 });
 
 body.addEventListener('click', function(e)  {
-  addButton(e);
+  // addButton(e);
+  eventDelegation(e);
   initItinerary(e);
   initPlaces(e, places);
   returnCountries(e);
   createLayout(e);
   initDetails(e);
 });
+
+function eventDelegation(e) {
+  if(e.target.dataset.country)  {
+    console.log('there is a country');
+    var target = e.target;
+    var country = e.target.dataset.country;
+    var className = e.target.className;
+    toggleItineraryButton(className, target);
+
+    if (places.indexOf(country) == -1) {
+      console.log('added');
+      queueAdd(country);
+    }  else if (places.indexOf(country) > 0) {
+      console.log('removed');
+      queueRemove(country);
+    }
+  }
+}
 
 // Constructor Functions *****************************//
 //***************************************************//
@@ -355,28 +374,13 @@ function createLayout(e)  {
 
 // DOM Manipulation *******************************************//
 //*************************************************************//
-function addButton(e) {
-  var country = e.target.dataset.country;
-  var queue = new Queue(country);
-  var target = e.target;
-  if(places.indexOf(country) == -1 && e.target.className == 'btn btn-warning add-button')  {
-    queue.add();
+
+function toggleItineraryButton(className, target)  {
+  if (className == 'btn btn-warning add-button') {
     target.textContent = 'Remove from Itinerary';
     target.className = 'btn btn-danger button-remove';
-    var call = new Call('GET');
-    call.path = '/alert/' + upperCase(country);
-    call.request(function(result) {
-      console.log(result);
-      if(result.message == 'alert') {
-        var alert = htmlBlock('div', [['class', 'btn btn-danger alert']], country.toUpperCase() + '!!!', body);
-        result.keywords.forEach(function(word)  {
-          htmlBlock('div', [], word, alert);
-        });
-      }
-    });
-    return;
-  } else if(places.indexOf(country) > 0 && e.target.className == 'btn btn-danger button-remove')  {
-    queue.remove();
+  }
+  if (className == 'btn btn-danger button-remove')  {
     target.textContent = 'Add to Itinerary';
     target.className = 'btn btn-warning add-button';
   }
@@ -623,6 +627,16 @@ function countryDetails(data)  {
 
 // Helper functions ***************************//
 // ******************************************//
+function queueAdd(country)  {
+  var queue = new Queue(country);
+  queue.add();
+}
+
+function queueRemove(country) {
+  var queue = new Queue(country);
+  queue.remove();
+}
+
 function createEl(tag, parent)  {
   var newElement = document.createElement(tag);
   return parent.appendChild(newElement);
