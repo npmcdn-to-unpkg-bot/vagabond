@@ -39,9 +39,7 @@ body.addEventListener('mouseover', function(e)  {
 });
 
 body.addEventListener('click', function(e)  {
-  // addButton(e);
   eventDelegation(e);
-  initItinerary(e);
   initPlaces(e, places);
   returnCountries(e);
   createLayout(e);
@@ -49,9 +47,14 @@ body.addEventListener('click', function(e)  {
 });
 
 function eventDelegation(e) {
-  if(e.target.dataset.country)  {
+  if (e.target.id)  {
+    var id = e.target.id;
+    if (id == 'submit-itinerary') {
+      initItinerary();
+    }
+  }
+  if (e.target.dataset.country)  {
     console.log('there is a country');
-    var target = e.target;
     var country = e.target.dataset.country;
     var className = e.target.className;
     toggleItineraryButton(className, target);
@@ -59,6 +62,7 @@ function eventDelegation(e) {
     if (places.indexOf(country) == -1) {
       console.log('added');
       queueAdd(country);
+      assignAlert(country);
     }  else if (places.indexOf(country) > 0) {
       console.log('removed');
       queueRemove(country);
@@ -290,14 +294,9 @@ function sideBar(user)  {
   displayName(message);
 }
 
-function initItinerary(e)  {
-  if(e.target.id == 'submit-itinerary') {
-    var itinerary = new Itinerary(schedule);
-    itinerary.setItinerary();
-  }
-  else {
-    return;
-  }
+function initItinerary()  {
+  var itinerary = new Itinerary(schedule);
+  itinerary.setItinerary();
 }
 
 function returnCountries(e) {
