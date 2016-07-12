@@ -40,13 +40,20 @@ body.addEventListener('mouseover', function(e)  {
 
 body.addEventListener('click', function(e)  {
   eventDelegation(e);
-  initPlaces(e, places);
   returnCountries(e);
   createLayout(e);
   initDetails(e);
 });
 
 function eventDelegation(e) {
+  if (e.target.className) {
+    let className = e.target.className;
+    if (className == 'view-itinerary')  {
+      clearChildren(itinerary);
+      clearChildren(details);
+      initQueue();
+    }
+  }
   if (e.target.id)  {
     var id = e.target.id;
     if (id == 'submit-itinerary') {
@@ -315,19 +322,15 @@ function initCountries()  {
   });
 }
 
-function initPlaces(e, array) {
-  if(e.target.className == 'view-itinerary')  {
-    clearChildren(itinerary);
-    clearChildren(details);
-    var call = new Call('GET');
-    call.path = '/countries';
-    call.request(function(result)  {
-      initWell();
-      array.forEach(function(item)  {
-        itineraryRow(item, result);
-      });
+function initQueue() {
+  var call = new Call('GET');
+  call.path = '/countries';
+  call.request(function(result)  {
+    initWell();
+    places.forEach(function(item)  {
+      itineraryRow(item, result);
     });
-  }
+  });
 }
 
 function displayName(name) {
