@@ -23,7 +23,11 @@ window.addEventListener('load', function(e) {
 });
 
 body.addEventListener('mouseover', function(e)  {
-  flagOverlay(e);
+  var theParent = e.target.offsetParent;
+  var element = e.target.nodeName;
+  if (theParent.classList.contains('grid-item-content') && element == 'IMG')  {
+    flagOverlay(e);
+  }
 });
 
 body.addEventListener('click', function(e)  {
@@ -620,9 +624,6 @@ var displayNews = function(data)  {
 
 function displayAlert(result, country) {
   var alert = htmlBlock('div', [['class', 'btn btn-danger alert']], 'Alert: ' + upperCase(country), body);
-  result.keywords.forEach(function(word)  {
-    htmlBlock('div', [], word, alert);
-  });
 }
 // DOM Manipulation *******************************************//
 //*************************************************************//
@@ -644,14 +645,12 @@ function flagOverlay(e) {
   var height = e.target.clientHeight;
   var width = e.target.clientWidth;
   var country = e.target.offsetParent.dataset.country;
-  if (theParent.classList.contains('grid-item-content') && element == 'IMG') {
-    var message = 'View Details';
-    var pointer = 'cursor: pointer';
-    var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
-    var overLayTextStyles = [['class', 'overlay country-details'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%;' + pointer]];
-    var overlay = htmlBlock('div', overLayStyles, '', theParent);
-    var overlayText = htmlBlock('h4', overLayTextStyles, message, theParent);
-  }
+  var message = 'View Details';
+  var pointer = 'cursor: pointer';
+  var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
+  var overLayTextStyles = [['class', 'overlay country-details'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%;' + pointer]];
+  var overlay = htmlBlock('div', overLayStyles, '', theParent);
+  var overlayText = htmlBlock('h4', overLayTextStyles, message, theParent);
   theParent.addEventListener('mouseleave', function(e) {
     $('.overlay').remove();
   }, false);

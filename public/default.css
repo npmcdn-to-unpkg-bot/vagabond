@@ -125,7 +125,15 @@ body  { background-color: #f3f3f3; }
   top: 5%;
   right: 15px;
   border-radius: 0px;
+  background-color: white;
+  color: black;
+  font-weight: 700;
+  border-top: 1px solid red;
+  border-left: 1px solid red;
+  border-bottom: 1px solid red;
 }
+
+.btn.btn-danger.alert:hover { border-right:none; }
 
 .well {
   margin-top: 5%;
