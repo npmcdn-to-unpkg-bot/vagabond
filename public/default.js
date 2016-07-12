@@ -19,19 +19,7 @@ var filterFunctions = {};
 
 window.addEventListener('load', function(e) {
   initCountries();
-  if(document.cookie) {
-    var call = new Call('GET');
-    call.path = '/check/' + document.cookie;
-    call.request(function(result)  {
-      var user = new User(result);
-      user.populate();
-      user.init(sideBar);
-    });
-  } else {
-    var user = new User('empty');
-    user.populate();
-    user.init(sideBar);
-  }
+  appInit();
 });
 
 body.addEventListener('mouseover', function(e)  {
@@ -40,26 +28,33 @@ body.addEventListener('mouseover', function(e)  {
 
 body.addEventListener('click', function(e)  {
   eventDelegation(e);
-  returnCountries(e);
   createLayout(e);
-  initDetails(e);
 });
 
 function eventDelegation(e) {
   if (e.target.className) {
-    let className = e.target.className;
+    var className = e.target.className;
     if (className == 'view-itinerary')  {
       clearChildren(itinerary);
       clearChildren(details);
       initQueue();
     }
+
+    if (className == 'close') {
+      clearChildren(details);
+    }
   }
+
   if (e.target.id)  {
     var id = e.target.id;
     if (id == 'submit-itinerary') {
       initItinerary();
     }
+    if (id == 'return-countries') {
+      clearChildren(itinerary);
+    }
   }
+
   if (e.target.dataset.country)  {
     console.log('there is a country');
     var country = e.target.dataset.country;
@@ -74,6 +69,12 @@ function eventDelegation(e) {
       console.log('removed');
       queueRemove(country);
     }
+  }
+
+  if (e.target.classList.contains('country-details')) {
+    var country = e.target.offsetParent.dataset.country;
+    clearChildren(itinerary);
+    initDetails(country)
   }
 }
 
@@ -283,6 +284,22 @@ var News = function(arg) {
 
 // Initialization Funcitons *******************************//
 //********************************************************//
+function appInit() {
+  if(document.cookie) {
+    var call = new Call('GET');
+    call.path = '/check/' + document.cookie;
+    call.request(function(result)  {
+      var user = new User(result);
+      user.populate();
+      user.init(sideBar);
+    });
+  } else {
+    var user = new User('empty');
+    user.populate();
+    user.init(sideBar);
+  }
+}
+
 function initLogin(e) {
   if(document.cookie) {
     return;
@@ -306,14 +323,6 @@ function initItinerary()  {
   itinerary.setItinerary();
 }
 
-function returnCountries(e) {
-  if(e.target.id == 'return-countries') {
-    clearChildren(itinerary);
-  } else {
-    return;
-  }
-}
-
 function initCountries()  {
   var call = new Call('GET');
   call.path = '/countries';
@@ -330,6 +339,14 @@ function initQueue() {
     places.forEach(function(item)  {
       itineraryRow(item, result);
     });
+  });
+}
+
+function initDetails(country) {
+  var call = new Call('GET');
+  call.path = '/countries/short/' + country;
+  call.request(function(result) {
+    countryDetails(result);
   });
 }
 
@@ -358,7 +375,7 @@ function createLayout(e)  {
     var filterValue = concatValues(filterFunctions);
   } else if (e.target.className == 'view-itinerary' || e.target.classList.contains('country-details')) {
       filterValue = 'kill';
-  } else if(e.target.id == 'return-countries' || e.target.className == 'close')  {
+  } else if (e.target.id == 'return-countries' || e.target.className == 'close')  {
       filterValue = concatValues(filterFunctions);
   } else {
       return;
@@ -513,7 +530,7 @@ function overlay(e) {
   var height = e.target.clientHeight;
   var width = e.target.clientWidth;
   var country = e.target.offsetParent.dataset.country;
-  if(theParent.classList.contains('grid-item-content') && element == 'IMG') {
+  if (theParent.classList.contains('grid-item-content') && element == 'IMG') {
     var message = 'View Details';
     var pointer = 'cursor: pointer';
     var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
@@ -525,21 +542,7 @@ function overlay(e) {
     $('.overlay').remove();
   }, false);
 }
-function initDetails(e) {
-  if(e.target.classList.contains('country-details'))  {
-    clearChildren(itinerary);
-    console.log('country-details');
-    var country = e.target.offsetParent.dataset.country;
-    console.log(e.target.offsetParent);
-    var call = new Call('GET');
-    call.path = '/countries/short/' + country;
-    call.request(function(result) {
-      countryDetails(result);
-    });
-  } else if(e.target.className == 'close')  {
-    clearChildren(details);
-  }
-}
+
 function countryDetails(data)  {
   clearChildren(details);
   var country = new Country(data);
