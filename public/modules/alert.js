@@ -5,79 +5,65 @@ var env = require('../env.js');
 var countries = require('../data/countries');
 var alert = express.Router();
 var jsonParser = require('body-parser').json();
+
 alert.use(jsonParser);
 
 alert.get('/:id', function(req, res) {
   var country = req.params.id;
-  var score = 0;
+  createAlert(country, function(result) {
+    console.log(result);
+    res.send(result);
+  });
+});
+
+var total = 0;
+var iterator = 0;
+function calculate(value)  {
+  iterator++;
+  total += value;
+  if(iterator > 5 && total < 0)  {
+    return 'stop';
+    iterator = 999;
+  } else {
+    return 'continue';
+  }
+}
+
+function createAlert(country, callback) {
   var filteredText = countries.filter(function(item)  {
     if(item.names.name == country)  {
       return item;
     }
   });
   var text = filteredText[0].news;
-  console.log(text);
   var alchemy = new Alchemy(text, 'keywords');
 
   alchemy.call(function(item) {
-    var data = feed(item);
-    var index = 0;
+    var data = filterRelevence(item);
     var words = [];
-    for(let i = 0; i < data.length; i++)  {
+    for (let i = 0; i < 10; i++)  {
       var text = data[i].text;
       var alchemy = new Alchemy(data[i].text, 'sentiment');
       alchemy.call(function(called) {
-        var dataObject = {}
-        // console.log(data[i]);
-          if(called.docSentiment.type == 'neutral') {
-          dataObject.type = called.docSentiment.type;
-          dataObject.score = 0;
-          dataObject.message = '';
-        } else if(data[i].relevance >= .9) {
-          dataObject.type = called.docSentiment.type;
-          dataObject.score = Math.pow(called.docSentiment.score, 3);
-          dataObject.message = data[i].text;
-        } else if(data[i].relevance < .9){
-          dataObject.type = called.docSentiment.type;
-          dataObject.score = Math.pow(called.docSentiment.score, 3);
-          dataObject.message = '';
-        }
-        if(index > 10 && score < 0)  {
-          return;
+        var score = 0;
+        if (called.docSentiment.type == 'neutral') {
+          score += 0;
+        } else if (data[i].relevance >= .9 && called.docSentiment.type == 'negative') {
+          words.push(data[i].text);
+          score += Math.pow(called.docSentiment.score, 3);
         } else {
-        call(dataObject);
+          score += Math.pow(called.docSentiment.score, 3);
+        }
+        var status = calculate(score);
+        if (status == 'stop' && iterator != 999) {
+          callback({ message: 'alert', keywords: words });
+        } else {
+          return;
         }
       });
     }
-    function call(data) {
-      index++;
-      var obj = {};
-      var message;
-      score += data.score;
-      if(data.message.length > 0 && data.score < 0) {
-        words.push(data.message);
-      }
-      if(index > 10 && score < 0)  {
-        obj.keywords = words;
-        obj.message = 'alert';
-      } else {
-        obj.message = 'clear';
-      }
-
-      sendMessage(obj);
-    }
   });
-
-  function sendMessage(obj) {
-    if(obj.message == 'alert')  {
-      res.send(obj);
-      console.log(obj);
-    } else {
-      console.log('clear');
-      return;
-    }
-  }
-});
+}
 
 var Alchemy = function(text, type)  {
   this.text = text;
@@ -96,7 +82,7 @@ var Alchemy = function(text, type)  {
   }
 }
 
-var feed = function(data) {
+var filterRelevence = function(data) {
   var myArray = [];
   var filtered = data.keywords.filter(function(item) {
     if(item.relevance > 0.6)  {
@@ -106,18 +92,18 @@ var feed = function(data) {
   return filtered;
 }
 
-alert.get('/wiki/result', function(req, res)  {
-  var country = 'Bangladesh';
-  var filteredText = countries.filter(function(item)  {
-    if(item.names.name == country)  {
-      return item;
-    }
-  });
-  var text = filteredText[0].wiki;
-  console.log(text);
-
-  var alchemy = new Alchey(text, 'combined');
-  res.send('wiki');
-});
+// alert.get('/wiki/result', function(req, res)  {
+//   var country = 'Bangladesh';
+//   var filteredText = countries.filter(function(item)  {
+//     if(item.names.name == country)  {
+//       return item;
+//     }
+//   });
+//   var text = filteredText[0].wiki;
+//   console.log(text);
+//
+//   var alchemy = new Alchey(text, 'combined');
+//   res.send('wiki');
+// });
 
 module.exports = alert;
