@@ -18,8 +18,8 @@ var filterFunctions = {};
 //**********************************************//
 
 window.addEventListener('load', function(e) {
-  initCountries();
   appInit();
+  initCountries();
 });
 
 body.addEventListener('mouseover', function(e)  {
@@ -348,7 +348,19 @@ function initDetails(country) {
   var call = new Call('GET');
   call.path = '/countries/short/' + country;
   call.request(function(result) {
-    displayDetails(result);
+    var button;
+    var buttonText;
+    places.forEach(function(place)  {
+      var country = upperCase(place);
+      if (country == result.name) {
+        button = 'btn btn-danger button-remove';
+        buttonText = 'Remove from Itinerary';
+      } else {
+        button = 'btn btn-warning add-button';
+        buttonText = 'Add to Itinerary';
+      }
+    });
+    displayDetails(result, button, buttonText);
   });
 }
 
@@ -524,14 +536,14 @@ function displayItineraryRow(country, flag) {
   });
 }
 
-function displayDetails(data)  {
+function displayDetails(data, button, buttonText)  {
   clearChildren(details);
   var country = new Country(data);
   var container = htmlBlock('div', [['class', 'well details']], '', details);
   var inner = htmlBlock('div', [['class', 'inner']], '', container);
   htmlBlock('button', [['type', 'button'], ['class', 'close'], ['aria-label', 'Close']], 'x', inner);
   htmlBlock('h2', [], country.name, inner);
-  htmlBlock('div', [['class', 'btn btn-warning add-button'], ['data-country', country.normalize(country.name)]], 'Add to Itinerary', inner);
+  htmlBlock('div', [['class', button], ['data-country', country.normalize(country.name)]], buttonText, inner);
 
   var row = htmlBlock('div', [['class', 'row']], '', inner);
   var left = htmlBlock('div', [['class', 'col-md-6']], '', row);
@@ -607,7 +619,7 @@ var displayNews = function(data)  {
 }
 
 function displayAlert(result, country) {
-  var alert = htmlBlock('div', [['class', 'btn btn-danger alert']], country.toUpperCase() + '!!!', body);
+  var alert = htmlBlock('div', [['class', 'btn btn-danger alert']], 'Alert: ' + upperCase(country), body);
   result.keywords.forEach(function(word)  {
     htmlBlock('div', [], word, alert);
   });
