@@ -23,12 +23,12 @@ window.addEventListener('load', function(e) {
 });
 
 body.addEventListener('mouseover', function(e)  {
-  overlay(e);
+  flagOverlay(e);
 });
 
 body.addEventListener('click', function(e)  {
   eventDelegation(e);
-  createLayout(e);
+  initIsotope(e);
 });
 
 function eventDelegation(e) {
@@ -39,12 +39,10 @@ function eventDelegation(e) {
       clearChildren(details);
       initQueue();
     }
-
     if (className == 'close') {
       clearChildren(details);
     }
   }
-
   if (e.target.id)  {
     var id = e.target.id;
     if (id == 'submit-itinerary') {
@@ -54,23 +52,20 @@ function eventDelegation(e) {
       clearChildren(itinerary);
     }
   }
-
   if (e.target.dataset.country)  {
     console.log('there is a country');
     var country = e.target.dataset.country;
     var className = e.target.className;
-    toggleItineraryButton(className, target);
-
+    toggleItineraryButton(className, e.target);
     if (places.indexOf(country) == -1) {
       console.log('added');
       queueAdd(country);
-      assignAlert(country);
+      initAlert(country);
     }  else if (places.indexOf(country) > 0) {
       console.log('removed');
       queueRemove(country);
     }
   }
-
   if (e.target.classList.contains('country-details')) {
     var country = e.target.offsetParent.dataset.country;
     clearChildren(itinerary);
@@ -291,31 +286,31 @@ function appInit() {
     call.request(function(result)  {
       var user = new User(result);
       user.populate();
-      user.init(sideBar);
+      user.init(initLogin);
     });
   } else {
     var user = new User('empty');
     user.populate();
-    user.init(sideBar);
+    user.init(initLogin);
   }
 }
 
-function initLogin(e) {
-  if(document.cookie) {
-    return;
-  } else if(e.target.className == 'login-panel')  {
-    document.cookie = "name=derp";
-  }
-}
+// function initLogin(e) {
+//   if(document.cookie) {
+//     return;
+//   } else if(e.target.className == 'login-panel')  {
+//     document.cookie = "name=derp";
+//   }
+// }
 
 
-function sideBar(user)  {
+function initLogin(user)  {
   if(user.username) {
     var message = 'Welcome, ' + user.username;
   } else {
     message = 'Login';
   }
-  displayName(message);
+  initName(message);
 }
 
 function initItinerary()  {
@@ -327,7 +322,7 @@ function initCountries()  {
   var call = new Call('GET');
   call.path = '/countries';
   call.request(function(result)  {
-    getCountry(result, iso);
+    displayCountry(result, iso);
   });
 }
 
@@ -335,9 +330,16 @@ function initQueue() {
   var call = new Call('GET');
   call.path = '/countries';
   call.request(function(result)  {
-    initWell();
+    displayItineraryWell();
     places.forEach(function(item)  {
-      itineraryRow(item, result);
+      var image = result.filter(function(bit) {
+        var countryName = bit.name.toLowerCase();
+        if(countryName == item) {
+          return bit;
+        }
+      });
+      var flag = image[0].img.toLowerCase();
+      displayItineraryRow(item, flag);
     });
   });
 }
@@ -346,11 +348,11 @@ function initDetails(country) {
   var call = new Call('GET');
   call.path = '/countries/short/' + country;
   call.request(function(result) {
-    countryDetails(result);
+    displayDetails(result);
   });
 }
 
-function displayName(name) {
+function initName(name) {
   if(name.length < 1 || name == 'Login')  {
     var className = 'login';
   } else {
@@ -359,7 +361,7 @@ function displayName(name) {
   displayFilters(name, className);
 }
 
-function createLayout(e)  {
+function initIsotope(e)  {
   if(e.target.classList.contains('filter-button')) {
     if(e.className == 'button-group filters-button-group')  {
       if (!matchesSelector(e.target, 'div')) {
@@ -390,32 +392,39 @@ function createLayout(e)  {
   }
 }
 
-function assignAlert(country) {
-    var call = new Call('GET');
-    call.path = '/alert/' + upperCase(country);
-    call.request(function(result) {
+function initAlert(country) {
+  var call = new Call('GET');
+  call.path = '/alert/' + upperCase(country);
+  call.request(function(result) {
+    console.log(result);
+    if(result.message == 'alert') {
+      displayAlert(result, country);
+    }
+  });
+}
+
+function initNews(e, country, theNews) {
+  if(e.target.classList.contains('news')) {
+    var sentiment = e.target.dataset.news;
+    var call = new Call('PUT');
+    call.path = '/news';
+    var obj = {};
+    obj.country = country.name;
+    obj.sentiment = sentiment;
+    call.request(obj, function(message) {
+      var result = JSON.parse(message);
       console.log(result);
-      if(result.message == 'alert') {
-        var alert = htmlBlock('div', [['class', 'btn btn-danger alert']], country.toUpperCase() + '!!!', body);
-        result.keywords.forEach(function(word)  {
-          htmlBlock('div', [], word, alert);
-        });
+      if(theNews) {
+        displayNews(result);
       }
     });
-  }
-// DOM Manipulation *******************************************//
-//*************************************************************//
-
-function toggleItineraryButton(className, target)  {
-  if (className == 'btn btn-warning add-button') {
-    target.textContent = 'Remove from Itinerary';
-    target.className = 'btn btn-danger button-remove';
-  }
-  if (className == 'btn btn-danger button-remove')  {
-    target.textContent = 'Add to Itinerary';
-    target.className = 'btn btn-warning add-button';
+  } else {
+    return;
   }
 }
+
+// DOM Creation *******************************************//
+//*************************************************************//
 
 function displayFilters(name, className) {
   var anchor = document.getElementsByClassName('sidebar-top')[0];
@@ -444,7 +453,7 @@ function displayFilters(name, className) {
   htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".spanish"]], 'Spanish', language);
 }
 
-function getCountry(country, iso)  {
+function displayCountry(country, iso)  {
   country.forEach(function(item) {
     var country = new Country(item);
     var continent = country.normalize(country.continent);
@@ -465,7 +474,7 @@ function getCountry(country, iso)  {
   });
 }
 
-function initWell() {
+function displayItineraryWell() {
   var well = htmlBlock('div', [['class', 'well itinerary']], '', itinerary);
   var top = htmlBlock('div', [['class', 'well-top']], '', well);
   var row = htmlBlock('div', [['class', 'row']], '', well);
@@ -474,16 +483,7 @@ function initWell() {
   htmlBlock('button', [['class', 'btn btn-default btn-lg'], ['id', 'submit-itinerary']], 'Submit', htmlBlock('div', [['class', 'col-md-offset-9 col-md-1']], '', row));
 }
 
-function itineraryRow(name, countries) {
-  var image = countries.filter(function(item) {
-    var countryName = item.name.toLowerCase();
-    if(countryName == name) {
-      return item;
-    }
-  });
-  var flag = image[0].img.toLowerCase();
-  console.log(flag);
-  var country = name;
+function displayItineraryRow(country, flag) {
   var anchor = document.getElementsByClassName('well-top')[0];
   var row = htmlBlock('div', [['class', 'row']], '', anchor);
   var outer = htmlBlock('div', [['class', 'outer']], '', row);
@@ -524,26 +524,7 @@ function itineraryRow(name, countries) {
   });
 }
 
-function overlay(e) {
-  var theParent = e.target.offsetParent;
-  var element = e.target.nodeName;
-  var height = e.target.clientHeight;
-  var width = e.target.clientWidth;
-  var country = e.target.offsetParent.dataset.country;
-  if (theParent.classList.contains('grid-item-content') && element == 'IMG') {
-    var message = 'View Details';
-    var pointer = 'cursor: pointer';
-    var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
-    var overLayTextStyles = [['class', 'overlay country-details'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%;' + pointer]];
-    var overlay = htmlBlock('div', overLayStyles, '', theParent);
-    var overlayText = htmlBlock('h4', overLayTextStyles, message, theParent);
-  }
-  theParent.addEventListener('mouseleave', function(e) {
-    $('.overlay').remove();
-  }, false);
-}
-
-function countryDetails(data)  {
+function displayDetails(data)  {
   clearChildren(details);
   var country = new Country(data);
   var container = htmlBlock('div', [['class', 'well details']], '', details);
@@ -579,35 +560,9 @@ function countryDetails(data)  {
   htmlBlock('button', [['class', 'btn btn-default news'], ['data-news', 'positive']], 'Positive', htmlBlock('div', [['class', 'col-md-4']], '', innerRow));
   var newsList = htmlBlock('div', [['class', 'news-list']], '', innerFour);
 
-  function getNews(e) {
-    if(e.target.classList.contains('news')) {
-      var sentiment = e.target.dataset.news;
-      var call = new Call('PUT');
-      call.path = '/news';
-      var obj = {};
-      obj.country = country.name;
-      obj.sentiment = sentiment;
-      call.request(obj, function(message) {
-        var result = JSON.parse(message);
-        console.log(result);
-        if(theNews) {
-          newsInit(result);
-        }
-      });
-    } else {
-      return;
-    }
-  }
   body.addEventListener('click', function(e)  {
-    getNews(e);
+    initNews(e, country, theNews);
   });
-  var newsInit = function(data)  {
-    clearChildren(newsList);
-    var news = new News(data);
-    for(var i = 0; i < news.story.length; i++)  {
-      htmlBlock('p', [], news.story[i].title, htmlBlock('a', [['href', news.story[i].url]], '', newsList));
-    }
-  }
 
   var plugs = htmlBlock('div', [['class', 'collapse'], ['id', 'plugs-' + country.name]], '', innerThree);
   var plugsWell = htmlBlock('div', [['class', 'well']], '', plugs);
@@ -640,6 +595,54 @@ function countryDetails(data)  {
   htmlBlock('span', [], country.water, htmlBlock('p', [], 'Water: ', twoInner));
   htmlBlock('span', [], country.advise, htmlBlock('p', [], 'Political Climate: ', twoInner));
 
+}
+
+var displayNews = function(data)  {
+  var newsList = document.getElementsByClassName('news-list')[0];
+  clearChildren(newsList);
+  var news = new News(data);
+  for(var i = 0; i < news.story.length; i++)  {
+    htmlBlock('p', [], news.story[i].title, htmlBlock('a', [['href', news.story[i].url]], '', newsList));
+  }
+}
+
+function displayAlert(result, country) {
+  var alert = htmlBlock('div', [['class', 'btn btn-danger alert']], country.toUpperCase() + '!!!', body);
+  result.keywords.forEach(function(word)  {
+    htmlBlock('div', [], word, alert);
+  });
+}
+// DOM Manipulation *******************************************//
+//*************************************************************//
+
+function toggleItineraryButton(className, target)  {
+  if (className == 'btn btn-warning add-button') {
+    target.textContent = 'Remove from Itinerary';
+    target.className = 'btn btn-danger button-remove';
+  }
+  if (className == 'btn btn-danger button-remove')  {
+    target.textContent = 'Add to Itinerary';
+    target.className = 'btn btn-warning add-button';
+  }
+}
+
+function flagOverlay(e) {
+  var theParent = e.target.offsetParent;
+  var element = e.target.nodeName;
+  var height = e.target.clientHeight;
+  var width = e.target.clientWidth;
+  var country = e.target.offsetParent.dataset.country;
+  if (theParent.classList.contains('grid-item-content') && element == 'IMG') {
+    var message = 'View Details';
+    var pointer = 'cursor: pointer';
+    var overLayStyles = [['class', 'overlay'], ['style', 'position: absolute; background-color: rgba(0,0,0,.35); height: ' + height + 'px; width: ' + width + 'px; top: 0px;']];
+    var overLayTextStyles = [['class', 'overlay country-details'], ['style', 'position: absolute; color: white; top: ' + height/3 + 'px; left: 25%;' + pointer]];
+    var overlay = htmlBlock('div', overLayStyles, '', theParent);
+    var overlayText = htmlBlock('h4', overLayTextStyles, message, theParent);
+  }
+  theParent.addEventListener('mouseleave', function(e) {
+    $('.overlay').remove();
+  }, false);
 }
 
 // Helper functions ***************************//
