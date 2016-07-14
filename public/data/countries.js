@@ -7,6 +7,7 @@ iso2: "AF",
 iso3: "AFG",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "33.9340383",
 long: "67.7034313",
@@ -838,7 +839,7 @@ url: "http://travel.gc.ca/destinations/afghanistan"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/afghanistan-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/afghanistan-travel-warning.html"
 }
 },
 neighbors: [
@@ -872,6 +873,7 @@ iso2: "AX",
 iso3: "ALA",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "0.199542",
 long: "20.3711715",
@@ -1687,6 +1689,7 @@ iso2: "AL",
 iso3: "ALB",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "41.1529058",
 long: "20.1605717",
@@ -2544,6 +2547,7 @@ iso2: "DZ",
 iso3: "DZA",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "28.0289837",
 long: "1.6666664",
@@ -3371,7 +3375,7 @@ url: "http://travel.gc.ca/destinations/algeria"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/algeria-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/algeria-travel-warning.html"
 }
 },
 neighbors: [
@@ -3405,6 +3409,7 @@ iso2: "AS",
 iso3: "ASM",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-14.3064071",
 long: "-170.6950175",
@@ -4251,6 +4256,7 @@ iso2: "AD",
 iso3: "AND",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "42.5422699",
 long: "1.5976721",
@@ -5091,6 +5097,7 @@ iso2: "AO",
 iso3: "AGO",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-11.2135241",
 long: "17.8770032",
@@ -5951,6 +5958,7 @@ iso2: "AI",
 iso3: "AIA",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "18.2179006",
 long: "-63.0689907",
@@ -6790,6 +6798,7 @@ iso2: "AG",
 iso3: "ATG",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "17.0869391",
 long: "-61.783491",
@@ -7639,6 +7648,7 @@ iso2: "AR",
 iso3: "ARG",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-38.4192641",
 long: "-63.5989206",
@@ -8508,6 +8518,7 @@ iso2: "AM",
 iso3: "ARM",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "40.0706185",
 long: "45.040717",
@@ -9361,6 +9372,7 @@ iso2: "AW",
 iso3: "ABW",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "12.517572",
 long: "-69.9649462",
@@ -10194,6 +10206,7 @@ iso2: "AU",
 iso3: "AUS",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-26.4390743",
 long: "133.281323",
@@ -11021,6 +11034,7 @@ iso2: "AT",
 iso3: "AUT",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "47.6964719",
 long: "13.3457347",
@@ -11865,6 +11879,7 @@ iso2: "AZ",
 iso3: "AZE",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "40.1521651",
 long: "47.6162745",
@@ -12726,6 +12741,7 @@ iso2: "BS",
 iso3: "BHS",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "24.0877465",
 long: "-76.5935076",
@@ -13563,6 +13579,7 @@ iso2: "BH",
 iso3: "BHR",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "25.9434256",
 long: "50.6014985",
@@ -14429,6 +14446,12 @@ continent: "AS"
 },
 news: 'DHAKA:  Bangladesh police shot dead the pizza chef of a Dhaka restaurant, mistakenly thinking he was one of the militants who killed 20 people, and misread online warnings of an impending assault, police and government officials said on Tuesday. New details from interviews with the officials and the first information report registered at a Daka police station painted a picture of security agencies slow to deal with Friday\'s attack, one of the country\'s deadliest. \"This was the first time in Bangladesh such a thing had taken place. Nobody was prepared for it. They did not realise the gravity of the situation initially,\" HT Imam, a political adviser to Prime Minister Sheikh Hasina, told Reuters in an interview. \"Initial response was slow.\" Bangladesh authorities who monitor social media saw several messages on Friday posted on Twitter saying there would be an attack, he said. But the police thought any attack was more likely to target embassies and major hotels and restaurants, Imam said. Police closed major hotels and eateries in and around hotel Westin, about 1 km (0.62 mile) from the Holey Artisan Bakery and O\'Kitchen, the restaurant that was attacked, he said. \"They (police) didn\'t think at all it can be this place,\" Imam said. \"It is to be investigated whether there was an intelligence failure.\" The attack, claimed by Islamic State, marked a major escalation in the scale and brutality of violence aimed at forcing strict Islamic rule onto Bangladesh, whose 160 million people are mostly Muslim. Police named five Bangladeshi gunmen who stormed the restaurant: Nibras Islam, Rohan Imtiaz, Meer Saameh Mubasheer, Khairul Islam and Shafiqul Islam. Several other people have been arrested. The attackers separated foreigners from locals, and most of the dead were foreigners, from Italy, Japan, India and the United States. But survivors told local television that Muslims who could not recite the Koran were also killed. The targeting of foreigners has unsettled the country\'s $26 billion garment export industry, with some foreign retailers suspending all business travel to the country. The bodies of the nine Italian victims were flown to Rome on Tuesday. Investigators there are looking into whether Italians were specifically targeted, a judicial source said. Foreign Minister Paolo Gentiloni, who went to Rome\'s Ciampino airport for the plane\'s arrival, said he was committed to making sure the victims received state assistance in line with Italian law, which also provides for their families. Islamic State and al Qaeda have claimed a series of killings of liberals and members of religious minorities in Bangladesh in he past year. The government has dismissed those claims, as it did Islamic State\'s claim of responsibility for Friday\'s attack. Police believe Jamaat-ul-Mujahideen Bangladesh an outlawed domestic group that has pledged allegiance to Islamic State, played a significant role in organising the privileged, educated, young attackers. Confusion over exactly how many gunmen were involved was at least partly cleared up on Tuesday, when police named Saiful Islam Chowkidar, a pizza maker at the Holey Artisan Bakery, as among the six people security forces killed when they stormed the building to end a 12-hour stand-off. \"He may not be involved,\" Saiful Islam, a police official investigating the attack, told Reuters, adding Chowkidar\'s death was still being investigated. An employee at the cafe, shown a photo of a man killed at the eatery and wearing a chef\'s outfit, identified him as Chowkidar, and said he had worked there for 18 months. BRUTAL ATTACK In the police filing, seen by Reuters, Chowkidar\'s name was included among 21 hostages killed by attackers armed with knives, guns and explosives. At least three Bangladeshis were also murdered during the assault. One was a Muslim woman, a regular at the restaurant who did not wear the Islamic veil, whose throat was slashed when she refused to recite the Koran, Imam said. Two police officers were killed outside the restaurant. The police report showed that police made an initial attempt to enter the restaurant after the attackers stormed in, but facing gunfire and grenades they held off any action for more than eight hours. \"The terrorists kept firing and throwing grenades at us every time we moved forward,\" the report said. Between 30 and 35 policemen were wounded when the attackers threw grenades at a force stationed to the west of the cafe, forcing police to wait for reinforcements. Eventually, the police raid was launched after daybreak. Imam said police repeatedly sent messages asking what the attackers wanted, initially thinking they sought a ransom. The fear was the hostages would be killed if the police forced their way in, he said. \"The way the police and the RAB acted in the early hours raises questions that need to be looked into,\" Imam said, referring to the Rapid Action Battalion, an elite counter-terrorism unit. At least three of the gunmen were from wealthy, liberal families who had attended elite Dhaka schools, in contrast to the usual Bangladeshi militant\'s path from poverty and a madrassa education to violence.',
 wiki:'Bangladesh  ( listen), lit. \"The country of Bengal\"), officially the People\'s Republic of Bangladesh, is a sovereign country in South Asia. It forms the largest and eastern portion the ethno-linguistic region of Bengal. Located at the apex of the Bay of Bengal, Bangladesh is bordered by India and Myanmar and is separated from Nepal and Bhutan by the narrow Siliguri Corridor. Bangladesh is the world\'s eighth-most populous country, the fifth-most populous in Asia and the third-most populous among Muslim-majority countries. The official Bengali language is the tenth-most spoken language in the world, which Bangladesh shares with the neighboring Indian states of West Bengal and Tripura. Three of Asia\'s largest rivers, the Ganges (locally known as the Padma), the Brahmaputra (locally known as the Jamuna) and the Meghna, flow through Bangladesh and form the fertile Bengal delta — the largest delta in the world.With rich biodiversity, Bangladesh is home to 700 rivers, most of the world\'s largest mangrove forest; rainforested and tea-growing highlands; a 600 km (370 mi) coastline with one of the world\'s longest beaches; and various islands, including a coral reef. Bangladesh is one of the most densely populated countries in the world, ranking alongside South Korea and Monaco. Urban centers are spread across the country, with the capital Dhaka and the port city Chittagong being the most prominent. The predominant ethnic group are Bengalis, along with numerous minorities, including Chakmas, Garos, Marmas, Tanchangyas, Bisnupriya Manipuris, Santhals, Biharis, Oraons, Tripuris, Mundas, Rakhines and Rohingyas. Greater Bengal was known to the ancient Greeks and Romans as Gangaridai.The people of the delta developed their own language, script, literature, music, art and architecture. A thalassocracy and an entrepôt of the historic Silk Road, Ancient Bengal established colonies on Indian Ocean islands and in Southeast Asia; influenced the cultures of Tibet and China;and had strong trade links with Persia, Arabia and the Mediterranean that focused on its lucrative cotton muslin textiles.Islam, introduced in the first millennium, was adopted under the Delhi Sultanate as an official religion. Bengal was absorbed into the Muslim world and the achievements of pre-Islamic civilizations were embraced by the new polity. In the 14th and 15th centuries, the Bengal Sultanate emerged as a regional power in Asia. By the 16th and 17th centuries, the Mughal Empire controlled the region and its Bengal Subah province became a prosperous hub of trade. British colonial conquest took place in the late-18th century. Nationalism, social reforms and the arts developed under the British Raj in the late 19th and early 20th centuries, when the region was a hotbed of the anti-colonial movement in the subcontinent. The first British partition of Bengal in 1905, that created the province of Eastern Bengal and Assam, set the precedent for the Partition of British India in 1947, when East Bengal joined the Dominion of Pakistan and was renamed as East Pakistan in 1955. It was separated from West Pakistan by 1,400 kilometres (870 mi) of Indian territory. East Pakistan was home to the country\'s demographic majority and its legislative capital. The Bangladesh Liberation War in 1971 resulted in the secession of East Pakistan as a new republic with a secular multiparty parliamentary democracy.A short-lived one party state and several military coups in 1975 established a presidential government. The restoration of the parliamentary republic in 1991 led to improved economic growth and relative stability. However, Bangladesh continues to face challenges of poverty, corruption, polarized politics, human rights abuses by security forces, overpopulation and global warming. The country has achieved notable human development progress, including in health, education, gender equality, population control and food production.The poverty rate has reduced from 57% in 1990 to 25.6% in 2014.Considered a middle power in international affairs and a major developing country, Bangladesh is listed as one of the Next Eleven. It is a unitary state with eight administrative divisions and an elected parliament called the Jatiyo Sangshad. Bangladesh has the third-largest economy and military in South Asia after India and Pakistan. It is a founding member of SAARC and hosts the permanent secretariat of BIMSTEC. The country is the world\'s largest contributor to United Nations peacekeeping operations. It is a member of the Developing 8 Countries, the OIC, the Commonwealth of Nations, the World Trade Organization, the Group of 77, the Non-Aligned Movement, BCIM, the Indian Ocean Rim Association and BBIN. The country has significant natural resources, including natural gas, limestone and coal. Agriculture mainly produces rice, jute and tea. Bangladesh\'s major trading partners include Japan, the United States, the European Union and the other nearby Asian nations of China, Malaysia and India.',
+alerts: [
+{
+  date: 07112016,
+  keywords: ["Isis", "Terror"]
+}
+],
 maps: {
 lat: "23.6943117",
 long: "90.344352",
@@ -15263,7 +15286,7 @@ url: "http://travel.gc.ca/destinations/bangladesh"
 },
 US: {
 advise: "Alert",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/bangladesh-travel-alert.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/bangladesh-travel-alert.html"
 }
 },
 neighbors: [
@@ -15297,6 +15320,7 @@ iso2: "BB",
 iso3: "BRB",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "13.1900628",
 long: "-59.5355639",
@@ -16129,6 +16153,7 @@ iso2: "BY",
 iso3: "BLR",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "53.7169415",
 long: "27.9775789",
@@ -16982,6 +17007,7 @@ iso2: "BE",
 iso3: "BEL",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "50.501079",
 long: "4.4764595",
@@ -17818,6 +17844,7 @@ iso2: "BZ",
 iso3: "BLZ",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "17.1907805",
 long: "-88.3596575",
@@ -18680,6 +18707,7 @@ iso2: "BJ",
 iso3: "BEN",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "9.3217214",
 long: "2.3100051",
@@ -19545,6 +19573,7 @@ iso2: "BM",
 iso3: "BMU",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "32.3191775",
 long: "-64.7670827",
@@ -20368,6 +20397,7 @@ iso2: "BT",
 iso3: "BTN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "27.5314205",
 long: "90.4358528",
@@ -21222,6 +21252,7 @@ iso2: "BO",
 iso3: "BOL",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-16.2837065",
 long: "-63.5493965",
@@ -22087,6 +22118,7 @@ iso2: "BA",
 iso3: "BIH",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "43.9165389",
 long: "17.6721508",
@@ -22940,6 +22972,7 @@ iso2: "BW",
 iso3: "BWA",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-22.342841",
 long: "24.6871044",
@@ -23805,6 +23838,7 @@ iso2: "BR",
 iso3: "BRA",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-14.2400732",
 long: "-53.1805017",
@@ -24674,6 +24708,7 @@ iso2: "BN",
 iso3: "BRN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "4.542577",
 long: "114.7198127",
@@ -25530,6 +25565,7 @@ iso2: "BG",
 iso3: "BGR",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "42.7253401",
 long: "25.4833039",
@@ -26383,6 +26419,7 @@ iso2: "BF",
 iso3: "BFA",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "12.2395",
 long: "-1.5584094",
@@ -27218,7 +27255,7 @@ url: "http://travel.gc.ca/destinations/burkina-faso"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/burkina-faso-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/burkina-faso-travel-warning.html"
 }
 },
 neighbors: [
@@ -27252,6 +27289,7 @@ iso2: "BI",
 iso3: "BDI",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-3.3896077",
 long: "29.9255829",
@@ -28091,7 +28129,7 @@ url: "http://travel.gc.ca/destinations/burundi"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/burundi-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/burundi-travel-warning.html"
 }
 },
 neighbors: [
@@ -28125,6 +28163,7 @@ iso2: "KH",
 iso3: "KHM",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "11.9834935",
 long: "104.9806145",
@@ -28987,6 +29026,7 @@ iso2: "CM",
 iso3: "CMR",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "7.3696495",
 long: "12.3445856",
@@ -29822,7 +29862,7 @@ url: "http://travel.gc.ca/destinations/cameroon"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/cameroon-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/cameroon-travel-warning.html"
 }
 },
 neighbors: [
@@ -29856,6 +29896,7 @@ iso2: "CA",
 iso3: "CAN",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "56",
 long: "-96",
@@ -30688,6 +30729,7 @@ iso2: "CV",
 iso3: "CPV",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "15.120142",
 long: "-23.6051721",
@@ -31553,6 +31595,7 @@ iso2: "KY",
 iso3: "CYM",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "19.3298586",
 long: "-81.2523601",
@@ -32389,6 +32432,7 @@ iso2: "CF",
 iso3: "CAF",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "6.6194073",
 long: "20.9367016",
@@ -33224,7 +33268,7 @@ url: "http://travel.gc.ca/destinations/central-african-republic"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/central-african-republic-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/central-african-republic-travel-warning.html"
 }
 },
 neighbors: [
@@ -33258,6 +33302,7 @@ iso2: "TD",
 iso3: "TCD",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "15.446105",
 long: "18.7350005",
@@ -34095,7 +34140,7 @@ url: "http://travel.gc.ca/destinations/chad"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/chad-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/chad-travel-warning.html"
 }
 },
 neighbors: [
@@ -34129,6 +34174,7 @@ iso2: "CL",
 iso3: "CHL",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-36.739055",
 long: "-71.0574942",
@@ -34974,6 +35020,7 @@ iso2: "CN",
 iso3: "CHN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "35.8574708",
 long: "104.1361118",
@@ -35848,6 +35895,7 @@ iso2: "CX",
 iso3: "CXR",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "-10.4912311",
 long: "105.6229817",
@@ -36686,6 +36734,7 @@ iso2: "NL",
 iso3: "NLD",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "52.2129919",
 long: "5.2793703",
@@ -37518,6 +37567,7 @@ iso2: "CO",
 iso3: "COL",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "4.1156735",
 long: "-72.9301367",
@@ -38345,7 +38395,7 @@ url: "http://travel.gc.ca/destinations/colombia"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/colombia-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/colombia-travel-warning.html"
 }
 },
 neighbors: [
@@ -38379,6 +38429,7 @@ iso2: "KM",
 iso3: "COM",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-11.6519809",
 long: "43.3725967",
@@ -39219,6 +39270,7 @@ iso2: "CG",
 iso3: "COG",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-0.6605788",
 long: "14.8965794",
@@ -40092,6 +40144,7 @@ iso2: "CD",
 iso3: "COD",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-4.0335162",
 long: "21.7500603",
@@ -40940,7 +40993,7 @@ url: "http://travel.gc.ca/destinations/congo-kinshasa"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/democratic-republic-of-the-congo-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/democratic-republic-of-the-congo-travel-warning.html"
 }
 },
 neighbors: [
@@ -40974,6 +41027,7 @@ iso2: "CK",
 iso3: "COK",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-21.2357745",
 long: "-159.7777548",
@@ -41817,6 +41871,7 @@ iso2: "CR",
 iso3: "CRI",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "9.6301892",
 long: "-84.2541844",
@@ -42674,6 +42729,7 @@ iso2: "HR",
 iso3: "HRV",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "44.4737849",
 long: "16.4688717",
@@ -43523,6 +43579,7 @@ iso2: "CU",
 iso3: "CUB",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "21.5513258",
 long: "-79.6017351",
@@ -44370,6 +44427,7 @@ iso2: "CW",
 iso3: "CUW",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "12.2133809",
 long: "-68.9495816",
@@ -45197,6 +45255,7 @@ iso2: "CY",
 iso3: "CYP",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "35.1697515",
 long: "33.4366038",
@@ -46036,6 +46095,7 @@ iso2: "CZ",
 iso3: "CZE",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "49.8037633",
 long: "15.4749126",
@@ -46868,6 +46928,7 @@ iso2: "DK",
 iso3: "DNK",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "56.1554671",
 long: "10.4309955",
@@ -47702,6 +47763,7 @@ iso2: "DJ",
 iso3: "DJI",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "11.8226699",
 long: "42.5883476",
@@ -48575,6 +48637,7 @@ iso2: "DO",
 iso3: "DOM",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "18.7009047",
 long: "-70.1654584",
@@ -49428,6 +49491,7 @@ iso2: "EC",
 iso3: "ECU",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-1.7929665",
 long: "-78.1368874",
@@ -50289,6 +50353,7 @@ iso2: "EG",
 iso3: "EGY",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "26.8357675",
 long: "30.7956597",
@@ -51142,6 +51207,7 @@ iso2: "SV",
 iso3: "SLV",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "13.8029939",
 long: "-88.9052918",
@@ -51969,7 +52035,7 @@ url: "http://travel.gc.ca/destinations/el-salvador"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/el-salvador-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/el-salvador-travel-warning.html"
 }
 },
 neighbors: [
@@ -52003,6 +52069,7 @@ iso2: "GQ",
 iso3: "GNQ",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "1.6195138",
 long: "10.317782",
@@ -52839,6 +52906,7 @@ iso2: "ER",
 iso3: "ERI",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "15.1879664",
 long: "39.7881626",
@@ -53675,6 +53743,7 @@ iso2: "EE",
 iso3: "EST",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "58.5974875",
 long: "24.9872555",
@@ -54516,6 +54585,7 @@ iso2: "ET",
 iso3: "ETH",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "9.149175",
 long: "40.498867",
@@ -55385,6 +55455,7 @@ iso2: "FK",
 iso3: "FLK",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-51.8142779",
 long: "-59.5318429",
@@ -56220,6 +56291,7 @@ iso2: "FO",
 iso3: "FRO",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "61.8925022",
 long: "-6.9729703",
@@ -57040,6 +57112,7 @@ iso2: "FJ",
 iso3: "FJI",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-17.4624892",
 long: "179.2583049",
@@ -57896,6 +57969,7 @@ iso2: "FI",
 iso3: "FIN",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "64.9146659",
 long: "26.0672554",
@@ -58732,6 +58806,7 @@ iso2: "FR",
 iso3: "FRA",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "46.71109",
 long: "1.7191036",
@@ -59564,6 +59639,7 @@ iso2: "PF",
 iso3: "PYF",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-17.6874094",
 long: "-149.3729275",
@@ -60412,6 +60488,7 @@ iso2: "TF",
 iso3: "ATF",
 continent: "AN"
 },
+alerts: [],
 maps: {
 lat: "-49.1306765",
 long: "69.5828104",
@@ -61227,6 +61304,7 @@ iso2: "GA",
 iso3: "GAB",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-0.8201314",
 long: "11.6098045",
@@ -62087,6 +62165,7 @@ iso2: "GM",
 iso3: "GMB",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "13.4457859",
 long: "-15.3061209",
@@ -62959,6 +63038,7 @@ iso2: "GE",
 iso3: "GEO",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "42.3207845",
 long: "43.3713615",
@@ -63824,6 +63904,7 @@ iso2: "DE",
 iso3: "DEU",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "51.1642292",
 long: "10.4541193",
@@ -64656,6 +64737,7 @@ iso2: "GH",
 iso3: "GHA",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "7.9527706",
 long: "-1.0307118",
@@ -65517,6 +65599,7 @@ iso2: "GI",
 iso3: "GIB",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "36.1319767",
 long: "-5.3529174",
@@ -66343,6 +66426,7 @@ iso2: "GR",
 iso3: "GRC",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "38.2749497",
 long: "23.8102717",
@@ -67175,6 +67259,7 @@ iso2: "GL",
 iso3: "GRL",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "71.693491",
 long: "-42.1736914",
@@ -68004,6 +68089,7 @@ iso2: "GD",
 iso3: "GRD",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "12.1099685",
 long: "-61.6933284",
@@ -68852,6 +68938,7 @@ iso2: "GU",
 iso3: "GUM",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "13.4502076",
 long: "144.7874584",
@@ -69679,6 +69766,7 @@ iso2: "GT",
 iso3: "GTM",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "15.7778664",
 long: "-90.2287257",
@@ -70540,6 +70628,7 @@ iso2: "GG",
 iso3: "GGY",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "49.4630653",
 long: "-2.5881123",
@@ -71358,6 +71447,7 @@ iso2: "GN",
 iso3: "GIN",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "9.9327629",
 long: "-11.3580295",
@@ -72191,6 +72281,7 @@ iso2: "GW",
 iso3: "GNB",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "11.7723463",
 long: "-15.16962",
@@ -73055,6 +73146,7 @@ iso2: "GY",
 iso3: "GUY",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "4.8556759",
 long: "-58.9530125",
@@ -73930,6 +74022,7 @@ iso2: "HT",
 iso3: "HTI",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "19.0558462",
 long: "-73.0513321",
@@ -74761,7 +74854,7 @@ url: "http://travel.gc.ca/destinations/haiti"
 },
 US: {
 advise: "Alert",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/haiti-travel-alert.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/haiti-travel-alert.html"
 }
 },
 neighbors: [
@@ -74795,6 +74888,7 @@ iso2: "HN",
 iso3: "HND",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "14.7503821",
 long: "-86.241341",
@@ -75622,7 +75716,7 @@ url: "http://travel.gc.ca/destinations/honduras"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/honduras-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/honduras-travel-warning.html"
 }
 },
 neighbors: [
@@ -75656,6 +75750,7 @@ iso2: "HK",
 iso3: "HKG",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "22.3700556",
 long: "114.1535941",
@@ -76487,6 +76582,7 @@ iso2: "HU",
 iso3: "HUN",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "47.1611615",
 long: "19.5057541",
@@ -77319,6 +77415,7 @@ iso2: "IS",
 iso3: "ISL",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "64.9312102",
 long: "-19.0211697",
@@ -78151,6 +78248,7 @@ iso2: "IN",
 iso3: "IND",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "21.1289956",
 long: "82.7792201",
@@ -79065,6 +79163,7 @@ iso2: "ID",
 iso3: "IDN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "-2.548926",
 long: "118.0148634",
@@ -79934,6 +80033,7 @@ iso2: "IR",
 iso3: "IRN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "32.420552",
 long: "53.6826136",
@@ -80761,7 +80861,7 @@ url: "http://travel.gc.ca/destinations/iran"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/iran-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/iran-travel-warning.html"
 }
 },
 neighbors: [
@@ -80795,6 +80895,7 @@ iso2: "IQ",
 iso3: "IRQ",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "33.22107",
 long: "43.6847595",
@@ -81623,7 +81724,7 @@ url: "http://travel.gc.ca/destinations/iraq"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/iraq-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/iraq-travel-warning.html"
 }
 },
 neighbors: [
@@ -81657,6 +81758,7 @@ iso2: "IE",
 iso3: "IRL",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "53.4152431",
 long: "-8.2390307",
@@ -82492,6 +82594,7 @@ iso2: "IM",
 iso3: "IMN",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "54.2312715",
 long: "-4.569504",
@@ -83310,6 +83413,7 @@ iso2: "IL",
 iso3: "ISR",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "31.4117257",
 long: "35.0818155",
@@ -84125,7 +84229,7 @@ url: "http://travel.gc.ca/destinations/israel-the-west-bank-and-the-gaza-strip"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/israel-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/israel-travel-warning.html"
 }
 },
 neighbors: [
@@ -84159,6 +84263,7 @@ iso2: "IT",
 iso3: "ITA",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "41.29246",
 long: "12.5736108",
@@ -84992,6 +85097,7 @@ iso2: "CI",
 iso3: "CIV",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "7.5455112",
 long: "-5.547545",
@@ -85853,6 +85959,7 @@ iso2: "JM",
 iso3: "JAM",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "18.1155174",
 long: "-77.2760026",
@@ -86710,6 +86817,7 @@ iso2: "JP",
 iso3: "JPN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "37.4900318",
 long: "136.4664008",
@@ -87542,6 +87650,7 @@ iso2: "JE",
 iso3: "JEY",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "49.2111266",
 long: "-2.1326328",
@@ -88360,6 +88469,7 @@ iso2: "JO",
 iso3: "JOR",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "31.279862",
 long: "37.1297454",
@@ -89220,6 +89330,7 @@ iso2: "KZ",
 iso3: "KAZ",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "48.005284",
 long: "66.9045435",
@@ -90077,6 +90188,7 @@ iso2: "KE",
 iso3: "KEN",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "0.1768696",
 long: "37.9083264",
@@ -90907,7 +91019,7 @@ url: "http://travel.gc.ca/destinations/kenya"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/kenya-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/kenya-travel-warning.html"
 }
 },
 neighbors: [
@@ -90941,6 +91053,7 @@ iso2: "KI",
 iso3: "KIR",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "1.8709185",
 long: "-157.3626011",
@@ -91797,6 +91910,7 @@ iso2: "KW",
 iso3: "KWT",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "29.3140762",
 long: "47.491749",
@@ -92649,6 +92763,7 @@ iso2: "KG",
 iso3: "KGZ",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "41.2228055",
 long: "74.7387787",
@@ -93506,6 +93621,7 @@ iso2: "LA",
 iso3: "LAO",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "18.206296",
 long: "103.889022",
@@ -94344,7 +94460,7 @@ url: "http://travel.gc.ca/destinations/laos"
 },
 US: {
 advise: "Alert",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/laos-travel-alert.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/laos-travel-alert.html"
 }
 },
 neighbors: [
@@ -94378,6 +94494,7 @@ iso2: "LV",
 iso3: "LVA",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "56.8801729",
 long: "24.6057484",
@@ -95223,6 +95340,7 @@ iso2: "LB",
 iso3: "LBN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "33.8735578",
 long: "35.863749",
@@ -96059,7 +96177,7 @@ url: "http://travel.gc.ca/destinations/lebanon"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/lebanon-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/lebanon-travel-warning.html"
 }
 },
 neighbors: [
@@ -96093,6 +96211,7 @@ iso2: "LS",
 iso3: "LSO",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-29.62319",
 long: "28.2334698",
@@ -96953,6 +97072,7 @@ iso2: "LR",
 iso3: "LBR",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "6.4336999",
 long: "-9.4217515",
@@ -97814,6 +97934,7 @@ iso2: "LY",
 iso3: "LBY",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "26.3347112",
 long: "17.2692101",
@@ -98649,7 +98770,7 @@ url: "http://travel.gc.ca/destinations/libya"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/libya-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/libya-travel-warning.html"
 }
 },
 neighbors: [
@@ -98683,6 +98804,7 @@ iso2: "LI",
 iso3: "LIE",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "47.1594184",
 long: "9.553635",
@@ -99515,6 +99637,7 @@ iso2: "LT",
 iso3: "LTU",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "55.1735998",
 long: "23.8948016",
@@ -100360,6 +100483,7 @@ iso2: "LU",
 iso3: "LUX",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "49.8152995",
 long: "6.13332",
@@ -101200,6 +101324,7 @@ iso2: "MO",
 iso3: "MAC",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "22.1634178",
 long: "113.5629426",
@@ -102031,6 +102156,7 @@ iso2: "MK",
 iso3: "MKD",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "41.6137143",
 long: "21.743258",
@@ -102888,6 +103014,7 @@ iso2: "MG",
 iso3: "MDG",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-18.7792678",
 long: "46.8344597",
@@ -103753,6 +103880,7 @@ iso2: "MW",
 iso3: "MWI",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-13.2512161",
 long: "34.3015278",
@@ -104633,6 +104761,7 @@ iso2: "MY",
 iso3: "MYS",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "4.140634",
 long: "109.6181485",
@@ -105489,6 +105618,7 @@ iso2: "MV",
 iso3: "MDV",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "1.9772469",
 long: "73.5361034",
@@ -106346,6 +106476,7 @@ iso2: "ML",
 iso3: "MLI",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "17.5739347",
 long: "-3.9861092",
@@ -107181,7 +107312,7 @@ url: "http://travel.gc.ca/destinations/mali"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/mali-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/mali-travel-warning.html"
 }
 },
 neighbors: [
@@ -107215,6 +107346,7 @@ iso2: "MT",
 iso3: "MLT",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "35.9440174",
 long: "14.3795242",
@@ -108055,6 +108187,7 @@ iso2: "MH",
 iso3: "MHL",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "7.1108635",
 long: "171.2060666",
@@ -108912,6 +109045,7 @@ iso2: "MQ",
 iso3: "MTQ",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "14.6336817",
 long: "-61.0198104",
@@ -109749,6 +109883,7 @@ iso2: "MR",
 iso3: "MRT",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "21.0078588",
 long: "-10.951734",
@@ -110579,7 +110714,7 @@ url: "http://travel.gc.ca/destinations/mauritania"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/mauritania-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/mauritania-travel-warning.html"
 }
 },
 neighbors: [
@@ -110613,6 +110748,7 @@ iso2: "MU",
 iso3: "MUS",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-20.20665",
 long: "57.6755",
@@ -111470,6 +111606,7 @@ iso2: "MX",
 iso3: "MEX",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "23.6266557",
 long: "-102.5375005",
@@ -112293,7 +112430,7 @@ url: "http://travel.gc.ca/destinations/mexico"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/mexico-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/mexico-travel-warning.html"
 }
 },
 neighbors: [
@@ -112327,6 +112464,7 @@ iso2: "FM",
 iso3: "FSM",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "6.8873509",
 long: "158.2150717",
@@ -113159,6 +113297,7 @@ iso2: "MD",
 iso3: "MDA",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "46.979424",
 long: "28.3896969",
@@ -114012,6 +114151,7 @@ iso2: "MC",
 iso3: "MCO",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "43.7383228",
 long: "7.4244581",
@@ -114853,6 +114993,7 @@ iso2: "MN",
 iso3: "MNG",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "46.8651082",
 long: "103.8347844",
@@ -115706,6 +115847,7 @@ iso2: "ME",
 iso3: "MNE",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "42.7044223",
 long: "19.3957785",
@@ -116551,6 +116693,7 @@ iso2: "MS",
 iso3: "MSR",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "16.7494365",
 long: "-62.1927489",
@@ -117391,6 +117534,7 @@ iso2: "MA",
 iso3: "MAR",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "31.7945869",
 long: "-7.0849336",
@@ -118248,6 +118392,7 @@ iso2: "MZ",
 iso3: "MOZ",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-18.6696553",
 long: "35.5273354",
@@ -119130,6 +119275,7 @@ iso2: "MM",
 iso3: "MMR",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "19.0734646",
 long: "96.6710399",
@@ -119986,6 +120132,7 @@ iso2: "NA",
 iso3: "NAM",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-22.967062",
 long: "18.4929993",
@@ -120847,6 +120994,7 @@ iso2: "NR",
 iso3: "NRU",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-0.5284144",
 long: "166.9342384",
@@ -121682,6 +121830,7 @@ iso2: "NP",
 iso3: "NPL",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "28.3973623",
 long: "84.12576",
@@ -122556,6 +122705,7 @@ iso2: "NL",
 iso3: "NLD",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "52.2129919",
 long: "5.2793703",
@@ -123388,6 +123538,7 @@ iso2: "NC",
 iso3: "NCL",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-21.2107283",
 long: "165.8517014",
@@ -124236,6 +124387,7 @@ iso2: "NZ",
 iso3: "NZL",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-43.3744881",
 long: "172.4662705",
@@ -125071,6 +125223,7 @@ iso2: "NI",
 iso3: "NIC",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "12.8691653",
 long: "-85.14157",
@@ -125897,7 +126050,7 @@ url: "http://travel.gc.ca/destinations/nicaragua"
 },
 US: {
 advise: "Alert",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/nicaragua-travel-alert.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/nicaragua-travel-alert.html"
 }
 },
 neighbors: [
@@ -125931,6 +126084,7 @@ iso2: "NE",
 iso3: "NER",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "17.5968801",
 long: "8.0828506",
@@ -126772,7 +126926,7 @@ url: "http://travel.gc.ca/destinations/niger"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/niger-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/niger-travel-warning.html"
 }
 },
 neighbors: [
@@ -126806,6 +126960,7 @@ iso2: "NG",
 iso3: "NGA",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "9.077751",
 long: "8.6774567",
@@ -127653,7 +127808,7 @@ url: "http://travel.gc.ca/destinations/nigeria"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/nigeria-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/nigeria-travel-warning.html"
 }
 },
 neighbors: [
@@ -127687,6 +127842,7 @@ iso2: "NU",
 iso3: "NIU",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-19.0542682",
 long: "-169.8620867",
@@ -128534,6 +128690,7 @@ iso2: "NF",
 iso3: "NFK",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-29.0328266",
 long: "167.9543924",
@@ -129372,6 +129529,7 @@ iso2: "KP",
 iso3: "PRK",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "40.3424611",
 long: "127.431026",
@@ -130198,7 +130356,7 @@ url: "http://travel.gc.ca/destinations/korea-north-dprk"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/north-korea-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/north-korea-travel-warning.html"
 }
 },
 neighbors: [
@@ -130232,6 +130390,7 @@ iso2: "MP",
 iso3: "MNP",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "15.1063896",
 long: "145.7065244",
@@ -131076,6 +131235,7 @@ iso2: "NO",
 iso3: "NOR",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "64.5783089",
 long: "17.888237",
@@ -131912,6 +132072,7 @@ iso2: "OM",
 iso3: "OMN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "21.5278654",
 long: "55.9196996",
@@ -132768,6 +132929,7 @@ iso2: "PK",
 iso3: "PAK",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "30.3894007",
 long: "69.3532207",
@@ -133607,7 +133769,7 @@ url: "http://travel.gc.ca/destinations/pakistan"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/pakistan-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/pakistan-travel-warning.html"
 }
 },
 neighbors: [
@@ -133641,6 +133803,7 @@ iso2: "PW",
 iso3: "PLW",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "7.3663307",
 long: "134.4340941",
@@ -134494,6 +134657,7 @@ iso2: "PS",
 iso3: "PSE",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "31.947351",
 long: "35.227163",
@@ -135325,6 +135489,7 @@ iso2: "PA",
 iso3: "PAN",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "8.4255093",
 long: "-80.1053645",
@@ -136186,6 +136351,7 @@ iso2: "PG",
 iso3: "PNG",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-6.2645902",
 long: "148.9638467",
@@ -137046,6 +137212,7 @@ iso2: "PY",
 iso3: "PRY",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-23.4380203",
 long: "-58.4483065",
@@ -137902,6 +138069,7 @@ iso2: "PE",
 iso3: "PER",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-9.1951786",
 long: "-74.9904165",
@@ -138767,6 +138935,7 @@ iso2: "PH",
 iso3: "PHL",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "12.170372",
 long: "122.9651613",
@@ -139595,7 +139764,7 @@ url: "http://travel.gc.ca/destinations/philippines"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/philippines-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/philippines-travel-warning.html"
 }
 },
 neighbors: [
@@ -139629,6 +139798,7 @@ iso2: "PN",
 iso3: "PCN",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-24.3729738",
 long: "-128.3246469",
@@ -140446,6 +140616,7 @@ iso2: "PL",
 iso3: "POL",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "51.9189046",
 long: "19.1343786",
@@ -141283,6 +141454,7 @@ iso2: "PT",
 iso3: "PRT",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "39.557191",
 long: "-7.8536599",
@@ -142115,6 +142287,7 @@ iso2: "PR",
 iso3: "PRI",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "18.1987192",
 long: "-66.3526747",
@@ -142955,6 +143128,7 @@ iso2: "QA",
 iso3: "QAT",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "25.3271054",
 long: "51.1966577",
@@ -143803,6 +143977,7 @@ iso2: "RE",
 iso3: "REU",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-21.1306889",
 long: "55.5264794",
@@ -144626,6 +144801,7 @@ iso2: "RO",
 iso3: "ROU",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "45.9419466",
 long: "25.0094306",
@@ -145479,6 +145655,7 @@ iso2: "RU",
 iso3: "RUS",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "55",
 long: "103",
@@ -146332,6 +146509,7 @@ iso2: "RW",
 iso3: "RWA",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-1.9437057",
 long: "29.8805778",
@@ -147201,6 +147379,7 @@ iso2: "SH",
 iso3: "SHN",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-15.9620694",
 long: "-5.7134193",
@@ -148039,6 +148218,7 @@ iso2: "KN",
 iso3: "KNA",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "17.2561791",
 long: "-62.7019638",
@@ -148884,6 +149064,7 @@ iso2: "LC",
 iso3: "LCA",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "13.9095248",
 long: "-60.9763851",
@@ -149736,6 +149917,7 @@ iso2: "SX",
 iso3: "SXM",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "18.0349321",
 long: "-63.0751727",
@@ -150559,6 +150741,7 @@ iso2: "VC",
 iso3: "VCT",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "13.252818",
 long: "-61.197096",
@@ -151413,6 +151596,7 @@ iso2: "WS",
 iso3: "WSM",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-13.7583109",
 long: "-172.1047677",
@@ -152269,6 +152453,7 @@ iso2: "SM",
 iso3: "SMR",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "43.9428779",
 long: "12.4600933",
@@ -153102,6 +153287,7 @@ iso2: "ST",
 iso3: "STP",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "0.1996951",
 long: "6.6105643",
@@ -153934,6 +154120,7 @@ iso2: "SA",
 iso3: "SAU",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "24.266906",
 long: "45.1078489",
@@ -154763,7 +154950,7 @@ url: "http://travel.gc.ca/destinations/saudi-arabia"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/saudi-arabia-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/saudi-arabia-travel-warning.html"
 }
 },
 neighbors: [
@@ -154797,6 +154984,7 @@ iso2: "SN",
 iso3: "SEN",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "14.5001718",
 long: "-14.4392276",
@@ -155676,6 +155864,7 @@ iso2: "RS",
 iso3: "SRB",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "44.2107675",
 long: "20.9224158",
@@ -156541,6 +156730,7 @@ iso2: "SC",
 iso3: "SYC",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-4.6838871",
 long: "55.4494781",
@@ -157397,6 +157587,7 @@ iso2: "SL",
 iso3: "SLE",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "8.4494988",
 long: "-11.7868289",
@@ -158270,6 +158461,7 @@ iso2: "SG",
 iso3: "SGP",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "1.3185635",
 long: "103.8460337",
@@ -159130,6 +159322,7 @@ iso2: "SK",
 iso3: "SVK",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "48.6724821",
 long: "19.696058",
@@ -159970,6 +160163,7 @@ iso2: "SI",
 iso3: "SVN",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "46.1491664",
 long: "14.9860106",
@@ -160819,6 +161013,7 @@ iso2: "SB",
 iso3: "SLB",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-9.2263493",
 long: "159.1873907",
@@ -161680,6 +161875,7 @@ iso2: "SO",
 iso3: "SOM",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "5.1632865",
 long: "46.2037008",
@@ -162493,7 +162689,7 @@ url: "http://travel.gc.ca/destinations/somalia"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/somalia-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/somalia-travel-warning.html"
 }
 },
 neighbors: [
@@ -162527,6 +162723,7 @@ iso2: "ZA",
 iso3: "ZAF",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-28.4792625",
 long: "24.6727135",
@@ -163402,6 +163599,7 @@ iso2: "GS",
 iso3: "SGS",
 continent: "AN"
 },
+alerts: [],
 maps: {
 lat: "-54.4306908",
 long: "-36.9869112",
@@ -164217,6 +164415,7 @@ iso2: "KR",
 iso3: "KOR",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "35.8615204",
 long: "127.096405",
@@ -165070,6 +165269,7 @@ iso2: "SS",
 iso3: "SSD",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "7.8626845",
 long: "29.6949232",
@@ -165876,7 +166076,7 @@ url: "http://travel.gc.ca/destinations/south-sudan"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/republic-of-south-sudan-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/republic-of-south-sudan-travel-warning.html"
 }
 },
 neighbors: [
@@ -165910,6 +166110,7 @@ iso2: "ES",
 iso3: "ESP",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "40.2085",
 long: "-3.713",
@@ -166754,6 +166955,7 @@ iso2: "LK",
 iso3: "LKA",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "7.8775394",
 long: "80.7003428",
@@ -167615,6 +167817,7 @@ iso2: "SD",
 iso3: "SDN",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "15.7860696",
 long: "30.1995791",
@@ -168454,7 +168657,7 @@ url: "http://travel.gc.ca/destinations/sudan"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/sudan-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/sudan-travel-warning.html"
 }
 },
 neighbors: [
@@ -168488,6 +168691,7 @@ iso2: "SR",
 iso3: "SUR",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "3.9232946",
 long: "-56.0107651",
@@ -169359,6 +169563,7 @@ iso2: "SZ",
 iso3: "SWZ",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-26.5179414",
 long: "31.4629694",
@@ -170219,6 +170424,7 @@ iso2: "SE",
 iso3: "SWE",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "62.1983366",
 long: "17.5671981",
@@ -171051,6 +171257,7 @@ iso2: "CH",
 iso3: "CHE",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "46.8131873",
 long: "8.2242101",
@@ -171891,6 +172098,7 @@ iso2: "SY",
 iso3: "SYR",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "34.8158524",
 long: "39.0464523",
@@ -172727,7 +172935,7 @@ url: "http://travel.gc.ca/destinations/syria"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/syria-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/syria-travel-warning.html"
 }
 },
 neighbors: [
@@ -172761,6 +172969,7 @@ iso2: "TW",
 iso3: "TWN",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "23.5989232",
 long: "121.0173463",
@@ -173602,6 +173811,7 @@ iso2: "TJ",
 iso3: "TJK",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "38.8581784",
 long: "71.2479841",
@@ -174459,6 +174669,7 @@ iso2: "TZ",
 iso3: "TZA",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-6.3728253",
 long: "34.8924826",
@@ -175328,6 +175539,7 @@ iso2: "TH",
 iso3: "THA",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "13.0389361",
 long: "101.490104",
@@ -176187,6 +176399,7 @@ iso2: "TL",
 iso3: "TLS",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "-8.7947313",
 long: "126.1366988",
@@ -177054,6 +177267,7 @@ iso2: "TG",
 iso3: "TGO",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "8.6259267",
 long: "0.8325041",
@@ -177930,6 +178144,7 @@ iso2: "TK",
 iso3: "TKL",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-9.1668337",
 long: "-171.8182111",
@@ -178752,6 +178967,7 @@ iso2: "TO",
 iso3: "TON",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-21.2417886",
 long: "-175.1285432",
@@ -179608,6 +179824,7 @@ iso2: "TT",
 iso3: "TTO",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "10.4437128",
 long: "-61.4191414",
@@ -180473,6 +180690,7 @@ iso2: "TN",
 iso3: "TUN",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "33.7931605",
 long: "9.5607653",
@@ -181300,7 +181518,7 @@ url: "http://travel.gc.ca/destinations/tunisia"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/tunisia-travel-warning1.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/tunisia-travel-warning1.html"
 }
 },
 neighbors: [
@@ -181334,6 +181552,7 @@ iso2: "TR",
 iso3: "TUR",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "38.9568857",
 long: "35.2408826",
@@ -182173,7 +182392,7 @@ url: "http://travel.gc.ca/destinations/turkey"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/turkey-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/turkey-travel-warning.html"
 }
 },
 neighbors: [
@@ -182207,6 +182426,7 @@ iso2: "TM",
 iso3: "TKM",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "38.963802",
 long: "59.5775989",
@@ -183064,6 +183284,7 @@ iso2: "TC",
 iso3: "TCA",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "21.7081886",
 long: "-71.9721177",
@@ -183904,6 +184125,7 @@ iso2: "TV",
 iso3: "TUV",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-7.4784418",
 long: "178.6799214",
@@ -184764,6 +184986,7 @@ iso2: "UG",
 iso3: "UGA",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "1.3707295",
 long: "32.3032414",
@@ -185636,6 +185859,7 @@ iso2: "UA",
 iso3: "UKR",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "48.383022",
 long: "31.1828699",
@@ -186471,7 +186695,7 @@ url: "http://travel.gc.ca/destinations/ukraine"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/ukraine-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/ukraine-travel-warning.html"
 }
 },
 neighbors: [
@@ -186505,6 +186729,7 @@ iso2: "AE",
 iso3: "ARE",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "24.3505839",
 long: "53.9396418",
@@ -187369,6 +187594,7 @@ iso2: "GB",
 iso3: "GBR",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "55.3617609",
 long: "-3.4433238",
@@ -188208,6 +188434,7 @@ iso2: "US",
 iso3: "USA",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "37.6",
 long: "-95.665",
@@ -189044,6 +189271,7 @@ iso2: "UY",
 iso3: "URY",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "-32.5583168",
 long: "-55.8117212",
@@ -189898,6 +190126,7 @@ iso2: "UZ",
 iso3: "UZB",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "41.381166",
 long: "64.5735819",
@@ -190759,6 +190988,7 @@ iso2: "VU",
 iso3: "VUT",
 continent: "OC"
 },
+alerts: [],
 maps: {
 lat: "-15.4492793",
 long: "167.595411",
@@ -191619,6 +191849,7 @@ iso2: "VA",
 iso3: "VAT",
 continent: "EU"
 },
+alerts: [],
 maps: {
 lat: "41.9038795",
 long: "12.4520834",
@@ -192447,6 +192678,7 @@ iso2: "VE",
 iso3: "VEN",
 continent: "SA"
 },
+alerts: [],
 maps: {
 lat: "5.1632956",
 long: "-69.4146705",
@@ -193274,7 +193506,7 @@ url: "http://travel.gc.ca/destinations/venezuela"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/venezuela-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/venezuela-travel-warning.html"
 }
 },
 neighbors: [
@@ -193308,6 +193540,7 @@ iso2: "VN",
 iso3: "VNM",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "15.9030623",
 long: "105.8066925",
@@ -194178,6 +194411,7 @@ iso2: "VG",
 iso3: "VGB",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "18.4180894",
 long: "-64.5854312",
@@ -195014,6 +195248,7 @@ iso2: "VI",
 iso3: "VIR",
 continent: "NA"
 },
+alerts: [],
 maps: {
 lat: "18.3434414",
 long: "-64.8671634",
@@ -195850,6 +196085,7 @@ iso2: "YE",
 iso3: "YEM",
 continent: "AS"
 },
+alerts: [],
 maps: {
 lat: "15.5539046",
 long: "48.1748476",
@@ -196678,7 +196914,7 @@ url: "http://travel.gc.ca/destinations/yemen"
 },
 US: {
 advise: "Warning",
-url: "http://travel.state.gov/content/passports/en/alertswarnings/yemen-travel-warning.html"
+url: "http://travel.state.gov/content/passports/en/alertswarn,ings/yemen-travel-warning.html"
 }
 },
 neighbors: [
@@ -196712,6 +196948,7 @@ iso2: "ZM",
 iso3: "ZMB",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-13.1403507",
 long: "27.8493048",
@@ -197598,6 +197835,7 @@ iso2: "ZW",
 iso3: "ZWE",
 continent: "AF"
 },
+alerts: [],
 maps: {
 lat: "-19.0169211",
 long: "29.1528018",
