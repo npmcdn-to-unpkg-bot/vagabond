@@ -467,6 +467,7 @@ function displayFilters(name, className) {
   htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".arabic"]], 'Arabic', language);
   htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".english"]], 'English', language);
   htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".spanish"]], 'Spanish', language);
+  htmlBlock('div', [['class', 'filter-button'], ['data-filter', ".chinese"]], 'Chinese', language);
 }
 
 function displayCountry(country, iso)  {
