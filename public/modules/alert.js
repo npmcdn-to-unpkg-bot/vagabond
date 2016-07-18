@@ -56,11 +56,27 @@ function createAlert(country, callback) {
         }
         var status = calculate(score);
         if (status == 'stop' && iterator != 999) {
+          saveAlert(country, words);
           callback({ message: 'alert', keywords: words });
         } else {
           return;
         }
       });
+    }
+  });
+}
+
+function saveAlert(country, keywords)  {
+  console.log(country);
+  var obj = {};
+  var date = Date.now();
+  obj.date = date;
+  obj.keywords = keywords;
+  countries.forEach(function(item)  {
+    if (item.names.name == country) {
+      item.alerts.push(obj);
+      console.log('ALERTS');
+      console.log(item.alerts);
     }
   });
 }

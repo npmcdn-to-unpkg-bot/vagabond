@@ -14,6 +14,7 @@ countriesLong.forEach(function(item)  {
   data.timezone = item.timezone.name;
   data.water = item.water.short;
   data.vaccinations = item.vaccinations;
+  data.alerts = item.alerts;
   message.push(data);
 });
 

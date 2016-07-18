@@ -605,8 +605,11 @@ function displayDetails(data, button, buttonText)  {
     var alerts = htmlBlock('div', [], '', zeroInner);
     country.alerts.forEach(function(item) {
       console.log(item);
-      htmlBlock('div', [], 'Date: ' + item.date, alerts);
-      htmlBlock('div', [], 'Time: ' + item.time, alerts);
+      var time = new Date(item.date);
+      var date = time.toLocaleDateString();
+      var localTime = time.toLocaleTimeString();
+      htmlBlock('div', [], 'Date: ' + date, alerts);
+      htmlBlock('div', [], 'Time: ' + localTime, alerts);
       var keywords = htmlBlock('div', [], 'Keywords:', alerts);
       item.keywords.forEach(function(keyword) {
         htmlBlock('div', [], '"' + keyword + '"', alerts);
