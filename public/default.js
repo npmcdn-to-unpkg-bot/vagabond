@@ -188,7 +188,14 @@ var Country = function(item)  {
   this.normalize = function(property) {
     return property.toLowerCase();
   }
-
+  this.getAlerts = function() {
+    if (item.alerts.length < 1) {
+      return;
+    } else {
+      return item.alerts;
+    }
+  }
+  this.alerts = this.getAlerts();
 }
 
 var User = function(result) {
@@ -542,6 +549,7 @@ function displayItineraryRow(country, flag) {
 }
 
 function displayDetails(data, button, buttonText)  {
+  console.log(data.alerts);
   clearChildren(details);
   var country = new Country(data);
   var container = htmlBlock('div', [['class', 'well details']], '', details);
@@ -590,6 +598,23 @@ function displayDetails(data, button, buttonText)  {
   };
 
   var right = htmlBlock('div', [['class', 'col-md-6 right']], '', row);
+
+  var zeroInner = htmlBlock('div', [['class', 'inner-container']], '', right);
+  htmlBlock('h4', [], 'Alerts', zeroInner);
+  if (country.alerts) {
+    var alerts = htmlBlock('div', [], '', zeroInner);
+    country.alerts.forEach(function(item) {
+      console.log(item);
+      htmlBlock('div', [], 'Date: ' + item.date, alerts);
+      htmlBlock('div', [], 'Time: ' + item.time, alerts);
+      var keywords = htmlBlock('div', [], 'Keywords:', alerts);
+      item.keywords.forEach(function(keyword) {
+        htmlBlock('div', [], '"' + keyword + '"', alerts);
+      });
+    });
+  } else {
+    htmlBlock('div', [], "There are no alerts", zeroInner);
+  }
 
   var oneInner = htmlBlock('div', [['class', 'inner-container']], '', right);
   htmlBlock('h4', [], 'Vaccination Requirements', oneInner);
@@ -720,4 +745,13 @@ function clearChildren(container)  {
   while(container.firstChild) {
     container.removeChild(container.firstChild);
   }
+}
+
+function addStyles(styles, element)  {
+  var array = Object.keys(styles);
+  var elementStyles = array.map(function(item)  {
+    return item + ':' + styles[item];
+  });
+  var styleString = elementStyles.join('; ');
+  element.setAttribute('style', styleString);
 }
