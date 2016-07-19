@@ -1,7 +1,7 @@
 'use strict';
 var express = require('express');
 var watson = require('watson-developer-cloud');
-var env = require('../env.js');
+// var env = require('../env.js');
 var countries = require('../data/countries');
 var alert = express.Router();
 var jsonParser = require('body-parser').json();

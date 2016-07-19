@@ -2,7 +2,7 @@ var express = require('express');
 var news = express.Router();
 var jsonParser = require('body-parser').json();
 var watson = require('watson-developer-cloud');
-var env = require('../env.js');
+// var env = require('../env.js');
 
 news.use(jsonParser);
 

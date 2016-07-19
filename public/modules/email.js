@@ -1,7 +1,7 @@
 var express = require('express');
 var email = express.Router();
 var jsonParser = require('body-parser').json();
-var env = require('../env.js');
+// var env = require('../env.js');
 
 email.use(jsonParser);
 
